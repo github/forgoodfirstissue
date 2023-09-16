@@ -36,7 +36,7 @@ export default function Document() {
         <meta name="twitter:image" content="https://happycommits.dev/meta.png" />
 
         <meta charSet="UTF-8" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-KV9HDNBZ1L"
