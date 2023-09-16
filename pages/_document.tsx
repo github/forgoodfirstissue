@@ -7,18 +7,14 @@ export default function Document() {
       <Head>
         <meta
           name="description"
-          content="Making your next open-source contribution doesn't have to be hard. First Issue is a curated list of accessible issues from popular open-source projects to get you started easily on your next contribution. Start today!"
+          content="Making your next open-source contribution make the world better. Happy Commits is a curated list of accessible issues from open-source projects helping our communities. Start today!"
         />
 
         <meta property="og:url" content="https://happycommits.dev" />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="First Issue | Issues for your next open-source contribution."
-        />
-        <meta
-          property="og:description"
-          content="Making your next open-source contribution doesn't have to be hard. First Issue is a curated list of accessible issues from popular open-source projects to get you started easily on your next contribution. Start today!"
+          content="Happy Commits | Make your next open-source contribution matter."
         />
         <meta property="og:image" content="https://happycommits.dev/meta.png" />
 
@@ -27,11 +23,11 @@ export default function Document() {
         <meta property="twitter:url" content="https://happycommits.dev" />
         <meta
           name="twitter:title"
-          content="First Issue | Issues for your next open-source contribution."
+          content="Happy Commits | Make your next open-source contribution matter."
         />
         <meta
           name="twitter:description"
-          content="Making your next open-source contribution doesn't have to be hard. First Issue is a curated list of accessible issues from popular open-source projects to get you started easily on your next contribution. Start today!"
+          content="Making your next open-source contribution make the world better. Happy Commits is a curated list of accessible issues from open-source projects helping our communities. Start today!"
         />
         <meta name="twitter:image" content="https://happycommits.dev/meta.png" />
 
