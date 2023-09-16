@@ -30,10 +30,11 @@ export const RepositoryItemTopBar = ({
       <div className="flex flex-1 justify-end items-center">
         <div className={`w-2 h-2 rounded-full ${repositoryHasNewIssues ? "bg-juniper" : ""}`}></div>
       </div>
+      {repositoryNumIssues > 0 &&
       <RepositoryIssueNumberIndicator
         isIssueOpen={isIssueOpen}
         numberOfIssues={repositoryNumIssues}
-      />
+      />}
     </div>
   );
 };
