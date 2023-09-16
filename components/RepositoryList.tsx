@@ -21,21 +21,36 @@ const Loader = () => (
 export const RepositoryList = ({ repositories }: RepositoryListProps) => {
   const itemsPerScroll = 15;
   const [items, setItems] = useState(itemsPerScroll);
+  const [filter, setFilter] = useState("");
+
+  const filteredRepositories = repositories.filter((repository) => {
+    // Check if any property of the RepositoryItem matches the filter value
+    return Object.values(repository).some((value) => {
+      if (value === null) {
+        return false;
+      }
+      return value.toString().toLowerCase().includes(filter.toLowerCase());
+    });
+  });
 
   return (
     <main className="grow">
       <div className="p-4 w-full">
+        <input
+          type="text"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          placeholder="Search Repositories"
+          className="border rounded-sm p-2 mb-4"
+        />
         <InfiniteScroll
           dataLength={items}
           next={() => setItems(items + itemsPerScroll)}
-          hasMore={items < repositories.length}
+          hasMore={items < filteredRepositories.length}
           loader={<Loader />}
         >
-          {repositories.slice(0, items).map((repository) => {
-            // NOTE - We sometimes get duplicate values back from GitHub API
-            // meaning we can't simply rely on the id as the key
+          {filteredRepositories.slice(0, items).map((repository) => {
             const key = `${repository.id}_${new Date().getTime()}_${Math.random()}`;
-
             return <RepositoryItem key={key} repository={repository} />;
           })}
         </InfiniteScroll>
