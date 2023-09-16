@@ -20,7 +20,7 @@ import fs from "fs";
 import millify from "millify";
 import slugify from "slugify";
 
-import firstissue from "./firstissue.json";
+import happycommits from "./happycommits.json";
 import {
   CountableTag as CountableTagModel,
   Issue as IssueModel,
@@ -94,7 +94,6 @@ const getRepositories = async (
     ...repositories.map((repo) => `repo:${repo}`),
     "archived:false",
     "is:public",
-    "stars:>=1",
     `pushed:>=${dayjs().add(-1, "month").format("YYYY-MM-DD")}`
   ].join(" ");
 
@@ -149,7 +148,7 @@ const getRepositories = async (
             }
             description
             url
-            repositoryTopics(first: 10) {
+            repositoryTopics(first: 20) {
               edges {
                 node {
                   topic {
@@ -242,11 +241,11 @@ const getRepositories = async (
 
   // unfortunately, there's no way to filter repositories by number of issues in the search query
   // filter out repos with less than 3 open issues
-  return repoData.filter((repo) => repo.issues.length >= 3);
+  return repoData;
 };
 
-[...new Set(firstissue.repositories)]
-  .slice(0, process.env.NODE_ENV === "development" ? 200 : firstissue.repositories.length)
+[...new Set(happycommits.repositories)]
+  .slice(0, process.env.NODE_ENV === "development" ? 200 : happycommits.repositories.length)
   .reduce((repoChunks: string[][], repo: string, index) => {
     // Split repositories into smaller chunks, this helps prevent request timeouts
     const chunkIndex = Math.floor(index / REPOS_PER_REQUEST);
@@ -261,7 +260,7 @@ const getRepositories = async (
       console.log(
         `Getting repositories - chunk ${index + 1} of ${arr.length} (size: ${chunk.length})`
       );
-      const repositories = await getRepositories(chunk, firstissue.labels);
+      const repositories = await getRepositories(chunk, happycommits.labels);
 
       // wait 1s between requests
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -314,14 +313,6 @@ const getRepositories = async (
     // Write generated data to file for use in the app
     fs.writeFileSync("./generated.json", JSON.stringify(data));
     console.log("Generated generated.json");
-
-    // Update firstissue.json with new list of repositories
-    firstissue.repositories = data.repositories
-      .map((repo) => `${repo.owner}/${repo.name}`)
-      // Sort alphabetically
-      .sort((a, b) => a.localeCompare(b));
-    fs.writeFileSync("./firstissue.json", JSON.stringify(firstissue, null, 2));
-    console.log("Generated firstissue.json");
 
     // Build sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
