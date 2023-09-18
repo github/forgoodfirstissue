@@ -2,13 +2,14 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import { Repository } from "../types";
 import { RepositoryItem } from "./RepositoryItem";
+import Select from 'react-select';
 
 type RepositoryListProps = {
   repositories: Repository[];
 };
+
 
 const Loader = () => (
   <div className="p-4 w-full">
@@ -22,16 +23,28 @@ export const RepositoryList = ({ repositories }: RepositoryListProps) => {
   const itemsPerScroll = 15;
   const [items, setItems] = useState(itemsPerScroll);
   const [filter, setFilter] = useState("");
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   const filteredRepositories = repositories.filter((repository) => {
-    // Check if any property of the RepositoryItem matches the filter value
-    return Object.values(repository).some((value) => {
+    // Check if the repository's language is included in the selected languages array
+    const languageFilter = selectedLanguages.length === 0 || selectedLanguages.includes(repository.language.display);
+
+    const nameFilter = Object.values(repository).some((value) => {
       if (value === null) {
         return false;
       }
       return value.toString().toLowerCase().includes(filter.toLowerCase());
     });
+  
+    return languageFilter && nameFilter;
   });
+
+  const allLanguages = repositories.map((repository) => repository.language.display);
+  const uniqueLanguages = allLanguages.filter((language, index) => allLanguages.indexOf(language) === index);
+  const languageOptions = uniqueLanguages.map((language) => ({
+    value: language,
+    label: language,
+  }));
 
   return (
     <main className="grow">
@@ -42,6 +55,17 @@ export const RepositoryList = ({ repositories }: RepositoryListProps) => {
           onChange={(e) => setFilter(e.target.value)}
           placeholder="Search Repositories"
           className="border rounded-sm p-2 mb-4"
+        />
+        <label className="block mb-2">Filter by Language</label>
+        <Select
+          isMulti
+          closeMenuOnSelect={false}
+          className="border rounded-sm p-2 mb-4"
+          onChange={(selectedOptions) => {
+            setSelectedLanguages(selectedOptions.map((option) => option.value));
+          }}
+          options={languageOptions}
+          classNamePrefix="select"
         />
         <InfiniteScroll
           dataLength={items}
