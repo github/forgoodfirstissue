@@ -313,7 +313,15 @@ const getRepositories = async (
     // Write generated data to file for use in the app
     fs.writeFileSync("./generated.json", JSON.stringify(data));
     console.log("Generated generated.json");
+    
+    const topics = data.repositories
+      .filter((repo) => repo.topics !== undefined)
+      .flatMap((repo) => repo.topics as TagModel[])
+      .map((topic) => topic.display);
 
+    fs.writeFileSync("./topics.json", JSON.stringify(topics, null, 2));
+    console.log("Generated topics.json");
+    
     // Build sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
