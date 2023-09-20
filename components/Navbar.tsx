@@ -39,8 +39,7 @@ export const Navbar = () => {
             }}
           >
             <div style={{ color: "white", fontFamily: "Inter", fontWeight: "600" }}>
-              <FontAwesomeIcon icon={faPlus} className="mr-2" />
-              &nbsp; Add your project
+              Add your project
             </div>
           </a>
         </div>
