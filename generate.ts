@@ -33,6 +33,8 @@ const REPOS_PER_REQUEST = 25;
 /** Maximum number of issues to retrieve per repository */
 const MAX_ISSUES = 10;
 
+const validTopicNames = ['sdg-1', 'sdg-2', 'sdg-3', 'sdg-4', 'sdg-5', 'sdg-6', 'sdg-7', 'sdg-8', 'sdg-9', 'sdg-10', 'sdg-11', 'sdg-12', 'sdg-13', 'sdg-14', 'sdg-15', 'sdg-16', 'sdg-17'];
+
 // symbols to replace with slugify
 slugify.extend({
   "#": "sharp",
@@ -200,6 +202,7 @@ const getRepositories = async (
           topics: repo.repositoryTopics.edges
             ?.filter((edge) => edge !== undefined)
             .map((edge) => (edge as RepositoryTopicEdge).node as RepositoryTopic)
+            .filter((topic) => validTopicNames.includes(topic.topic.name.toLowerCase()))
             .map((topic) => ({
               id: slugify(topic.topic.name, { lower: true }),
               display: topic.topic.name

@@ -1,6 +1,3 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export const AddYourProjectButton = () => {
   return (
     <div style={{ paddingLeft: 1202 }}>

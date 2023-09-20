@@ -1,6 +1,3 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export const Navbar = () => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-slate-700 p-2">
