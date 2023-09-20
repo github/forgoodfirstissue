@@ -49,24 +49,27 @@ export const RepositoryList = ({ repositories }: RepositoryListProps) => {
   return (
     <main className="grow">
       <div className="p-4 w-full">
+      <div className="flex flex-wrap">
         <input
           type="text"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           placeholder="Search Repositories"
-          className="border rounded-sm p-2 mb-4"
+          className="flex-1 mx-2 border rounded-sm p-2 mb-4"
         />
-        <label className="block mb-2">Filter by Language</label>
+        <label className="p-2">Filter by Language</label>
         <Select
           isMulti
           closeMenuOnSelect={false}
-          className="border rounded-sm p-2 mb-4"
+          className="flex-1 mx-2 border rounded-sm p-2 mb-4"
           onChange={(selectedOptions) => {
             setSelectedLanguages(selectedOptions.map((option) => option.value));
           }}
           options={languageOptions}
           classNamePrefix="select"
         />
+      </div>
+
         <InfiniteScroll
           dataLength={items}
           next={() => setItems(items + itemsPerScroll)}

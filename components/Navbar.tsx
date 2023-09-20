@@ -1,26 +1,50 @@
-import { useRouter } from "next/router";
-import React from "react";
-
-import { useAppData } from "../hooks/useAppData";
-import { Tag } from "../types";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar = () => {
-  const router = useRouter();
-  const { tag: path } = router.query;
-  const { languages, topics } = useAppData();
-  const tag = [...languages, ...topics].find((tag: Tag) => tag.id === path);
-
   return (
-    <header className="container max-w-6xl mx-auto flex flex-col md:flex-row my-5 md:my-10 p-6 bg-ink-400">
-      <nav className="flex items-center md:justify-center flex-wrap">
-        <h1 className="text-2xl pt-3 font-bold group-hover:text-juniper">Happy Commits</h1>
-        {path && tag ? (
-          <span className="text-2xl pt-3 cursor-pointer">
-            <span className="font-normal mx-3 text-slate">/</span>
-            <span className="font-semibold text-juniper">{tag?.display}</span>
-          </span>
-        ) : null}
-      </nav>
-    </header>
+    <nav className="flex items-center justify-between flex-wrap bg-slate-700 p-2">
+      <div className="flex items-center flex-shrink-0 text-vanilla-100 mr-6">
+        <svg
+          className="fill-current h-8 w-8 mr-2"
+          width="54"
+          height="54"
+          viewBox="0 0 54 54"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M27 50.5c-1.5 0-3-.6-4.2-1.8L2.3 28.7c-2.3-2.3-2.3-6.1 0-8.5 2.3-2.3 6.1-2.3 8.5 0L27 38.5l16.2-18.3c2.3-2.3 6.1-2.3 8.5 0 2.3 2.3 2.3 6.1 0 8.5L31.2 48.7c-1.2 1.2-2.7 1.8-4.2 1.8z" />
+        </svg>
+        <span className="text-vanilla-100 text-xl">Happy Commits</span>
+      </div>
+      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div className="text-sm lg:flex-grow"></div>
+        <div>
+          <a
+            className=""
+            href="https://github.com/rubyforgood/happycommits"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              height: 40,
+              paddingLeft: 24,
+              paddingRight: 24,
+              paddingTop: 8,
+              paddingBottom: 8,
+              background: "#604FDD",
+              borderRadius: 8,
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 10,
+              display: "inline-flex"
+            }}
+          >
+            <div style={{ color: "white", fontFamily: "Inter", fontWeight: "600" }}>
+              <FontAwesomeIcon icon={faPlus} className="mr-2" />
+              &nbsp; Add your project
+            </div>
+          </a>
+        </div>
+      </div>
+    </nav>
   );
 };

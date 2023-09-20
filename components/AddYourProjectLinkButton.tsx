@@ -1,12 +1,16 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 export const AddYourProjectLinkButton = () => {
   return (
-    <div className="pt-6">
+    <div className="d-flex flex-row-reverse">
       <a
-        className="block bg-juniper hover:bg-light_juniper text-ink-400 uppercase rounded-md font-bold text-center px-1 py-3"
-        href="https://github.com/"
+        className="btn btn-primary float-right text-end"
+        href="https://github.com/rubyforgood/happycommits"
         target="_blank"
         rel="noopener noreferrer"
       >
+      <FontAwesomeIcon icon={faPlus} className="mr-2" />
         Add your project
       </a>
     </div>
