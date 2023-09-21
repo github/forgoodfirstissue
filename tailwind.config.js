@@ -39,6 +39,9 @@ module.exports = {
       },
       slate: {
         700: '#334155'
+      },
+      neutral: {
+        200: '#E5E5E5'
       }
     },
     borderRadius: {

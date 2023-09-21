@@ -1,6 +1,6 @@
 export const HappyCommitsInfo = () => {
   return (
-    <div style={{ paddingLeft: "10%", paddingBottom: "3%" }}>
+    <div style={{ paddingLeft: "10%" }}>
       <div style={{ width: 541, height: 291, flexDirection: "column" }}>
         <div
           style={{
