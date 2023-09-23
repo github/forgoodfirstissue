@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React, { useState } from "react";
 
 import { RepositoryList } from "../components/RepositoryList";
 import { useAppData } from "../hooks/useAppData";
@@ -7,6 +8,7 @@ import { HeroContainer } from "../components/HeroContainer";
 
 export default function Home() {
   const { repositories } = useAppData();
+  const [filter, setFilter] = useState("");
 
   return (
     <>
@@ -14,8 +16,8 @@ export default function Home() {
         <title>Happy Commits | Make your next open-source contribution matter.</title>
       </Head>
       <Navbar />
-      <HeroContainer />
-      <RepositoryList repositories={repositories} />
+      <HeroContainer filter={filter} setFilter={setFilter} repositories={repositories} />
+      <RepositoryList repositories={repositories} filter={filter} />
     </>
   );
 }

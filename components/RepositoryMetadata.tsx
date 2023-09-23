@@ -2,34 +2,60 @@ import { Repository } from "../types";
 
 type RepositoryMetadataProps = {
   isIssueOpen: boolean;
+  repositoryNumIssues: number;
   lastModified: Repository["last_modified"];
   repositoryLang: Repository["language"]["display"];
-  repositoryStars: Repository["stars_display"];
+  repositoryTopics: Repository["topics"];
 };
 
 export const RepositoryMetadata = ({
-  isIssueOpen,
+  repositoryNumIssues,
   lastModified,
   repositoryLang,
-  repositoryStars
+  repositoryTopics
 }: RepositoryMetadataProps) => {
   return (
-    <div
-      className={`flex-row flex text-sm py-1 font-mono ${
-        isIssueOpen ? "text-honey" : "text-vanilla-200"
-      }`}
-    >
-      <div className="mr-4">
-        <span className="text-green-600">lang: </span>
-        {repositoryLang}
+    <div className="justify-start items-start gap-6 inline-flex">
+      <div className="justify-start items-center gap-1 flex">
+        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
+          Issues:{" "}
+        </div>
+        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
+          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
+            {repositoryNumIssues}
+            {repositoryNumIssues >= 10 ? "+" : ""}
+          </div>
+        </div>
       </div>
-      <div className="mr-4">
-        <span className="text-blue-600">stars: </span>
-        {repositoryStars}
+      <div className="justify-start items-center gap-1 flex">
+        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
+          Language:{" "}
+        </div>
+        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
+          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
+            {repositoryLang}
+          </div>
+        </div>
       </div>
-      <div className="mr-4">
-        <span className="text-red-600">last activity: </span>
-        <span>{lastModified}</span>
+      <div className="justify-start items-center gap-1 flex">
+        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
+          Label:
+        </div>
+        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
+          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
+            SDG-1
+          </div>
+        </div>
+      </div>
+      <div className="justify-start items-center gap-1 flex">
+        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
+          Last activity:
+        </div>
+        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
+          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
+            {lastModified}
+          </div>
+        </div>
       </div>
     </div>
   );

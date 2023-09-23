@@ -26,30 +26,40 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
   const lastModified = useLastModified(repository.last_modified);
 
   return (
-    <div
-      id={`repo-${repository.id}`}
-      className={`select-none border w-full rounded-md mb-4 group ${
-        isIssueOpen ? "border-juniper" : "border-ink-200"
-      }`}
-    >
-      <div className="px-5 py-3 cursor-pointer hover:bg-ink-300" onClick={() => setIsIssueOpen(!isIssueOpen)}>
-        <RepositoryItemTopBar
-          isIssueOpen={isIssueOpen}
-          repositoryHasNewIssues={repository.has_new_issues}
-          repositoryName={repository.name}
-          repositoryNumIssues={repository.issues.length}
-          repositoryOwner={repository.owner}
-          repositoryUrl={repository.url}
-        />
-        <RepositoryDescription repositoryDescription={repository.description} />
-        <RepositoryMetadata
-          isIssueOpen={isIssueOpen}
-          lastModified={lastModified}
-          repositoryLang={repository.language.display}
-          repositoryStars={repository.stars_display}
-        />
+    <div className="flex justify-center">
+      <div
+        id={`repo-${repository.id}`}
+        className="w-[85%] shadow-lg border-t border-r border-gray-300 flex-col justify-start items-start rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg inline-flex border mb-4"
+        onClick={() => setIsIssueOpen(!isIssueOpen)}
+      >
+        <div className="cursor-pointer w-full">
+          <RepositoryItemTopBar
+            isIssueOpen={isIssueOpen}
+            repositoryHasNewIssues={repository.has_new_issues}
+            repositoryName={repository.name}
+            repositoryNumIssues={repository.issues.length}
+            repositoryOwner={repository.owner}
+            repositoryUrl={repository.url}
+            repositoryTopics={repository.topics}
+          />
+          <div
+            className={`px-6 py-4 bg-white w-full rounded-bl-lg rounded-br-lg flex-col justify-start items-start gap-6 flex" ${
+              isIssueOpen ? "bg-indigo-50" : ""
+            }`}
+          >
+            <RepositoryDescription repositoryDescription={repository.description} />
+
+            <RepositoryMetadata
+              isIssueOpen={isIssueOpen}
+              lastModified={lastModified}
+              repositoryLang={repository.language.display}
+              repositoryTopics={repository.topics}
+              repositoryNumIssues={repository.issues.length}
+            />
+          </div>
+        </div>
+        {isIssueOpen && <IssuesList issues={repository.issues} />}
       </div>
-      {isIssueOpen && <IssuesList issues={repository.issues} />}
     </div>
   );
 };

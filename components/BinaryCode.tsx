@@ -1,8 +1,8 @@
 export const BinaryCode = () => {
   return (
     <div
-      className="opacity-20 text-vanilla-100 font-bold font-['Inter']"
-      style={{ position: "relative",paddingLeft: "70%", top: "-300px" }}
+      className="opacity-20 text-vanilla-100 font-bold font-['Inter'] w-auto float-right -mt-80 text-right"
+      style={{  }}
     ><p style={{fontSize:48}}>
       01111001010111100101
       <br /> 110111010110111100101

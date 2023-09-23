@@ -31,6 +31,13 @@ module.exports = {
         300: '#eeeeee',
         400: '#c0c1c3'
       },
+      gray: {
+        300: '#D1D5DB'
+      },
+      indigo: {
+        50: '#FAFAFF',
+        600: '#604FDD',
+      },
       ink: {
         100: '#373c49',
         200: '#2c303a',
@@ -42,6 +49,13 @@ module.exports = {
       },
       neutral: {
         200: '#E5E5E5'
+      },
+      violet: {
+        50: '#F1F0FF',
+        100: '#E9E7FF'
+      },
+      zinc: {
+        900: '#3A3A62'
       }
     },
     borderRadius: {

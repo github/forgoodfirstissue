@@ -2,7 +2,7 @@ import { GitHubIcon } from "./GitHubIcon";
 import { HappyCommitsInfo } from "./HappyCommitsInfo";
 import { BinaryCode } from "./BinaryCode";
 
-export const HeroContainer = () => {
+export const HeroContainer = ({filter, setFilter}) => {
   return (
     <>
       <div
@@ -13,7 +13,7 @@ export const HeroContainer = () => {
         }}
       >
         <GitHubIcon />
-        <HappyCommitsInfo />
+        <HappyCommitsInfo filter={filter} setFilter={setFilter} />
         <BinaryCode />
       </div>
     </>
