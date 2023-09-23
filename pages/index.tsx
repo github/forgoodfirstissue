@@ -5,6 +5,7 @@ import { RepositoryList } from "../components/RepositoryList";
 import { useAppData } from "../hooks/useAppData";
 import { Navbar } from "../components/Navbar";
 import { HeroContainer } from "../components/HeroContainer";
+import { GitHubOctocat } from "../components/GitHubOctocat";
 
 export default function Home() {
   const { repositories } = useAppData();
@@ -17,6 +18,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <HeroContainer filter={filter} setFilter={setFilter} />
+      <GitHubOctocat />
       <RepositoryList repositories={repositories} filter={filter} />
     </>
   );
