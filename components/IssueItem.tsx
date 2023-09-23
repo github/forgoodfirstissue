@@ -1,24 +1,8 @@
-import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { Issue } from "../types";
 
 type IssueItemProps = {
   issue: Issue;
 };
-
-type IssueCommentNumProps = {
-  numIssues: number;
-};
-
-// const IssueCommentNum = ({ numIssues }: IssueCommentNumProps) => {
-//   return (
-//     <div className="flex flex-row items-center justify-end mt-1 w-10">
-//       <span className="mr-2 text-sm leading-snug">{numIssues}</span>
-//       <FontAwesomeIcon icon={faComment} />
-//     </div>
-//   );
-// };
 
 export const IssueItem = ({ issue }: IssueItemProps) => {
   return (
@@ -35,7 +19,6 @@ export const IssueItem = ({ issue }: IssueItemProps) => {
         >
           {issue.title}
         </a>
-        {/* {issue.comments_count > 0 && <IssueCommentNum numIssues={issue.comments_count} />} */}
       </div>
     </li>
   );

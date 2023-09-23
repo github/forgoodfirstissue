@@ -16,7 +16,7 @@ export default function Home() {
         <title>Happy Commits | Make your next open-source contribution matter.</title>
       </Head>
       <Navbar />
-      <HeroContainer filter={filter} setFilter={setFilter} repositories={repositories} />
+      <HeroContainer filter={filter} setFilter={setFilter} />
       <RepositoryList repositories={repositories} filter={filter} />
     </>
   );

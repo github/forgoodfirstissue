@@ -2,7 +2,12 @@ import { GitHubIcon } from "./GitHubIcon";
 import { HappyCommitsInfo } from "./HappyCommitsInfo";
 import { BinaryCode } from "./BinaryCode";
 
-export const HeroContainer = ({filter, setFilter}) => {
+type FilterProps = {
+  filter: string;
+  setFilter: (filter: string) => void;
+};
+
+export const HeroContainer = ({filter, setFilter}: FilterProps) => {
   return (
     <>
       <div

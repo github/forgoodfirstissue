@@ -43,7 +43,7 @@ export const RepositoryMetadata = ({
         </div>
         <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
           <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
-            SDG-1
+            {repositoryTopics && repositoryTopics.map(topic => topic.display).join(', ')}
           </div>
         </div>
       </div>
