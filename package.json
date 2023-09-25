@@ -20,7 +20,7 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.2.7",
     "dayjs": "^1.11.7",
-    "millify": "^5.0.1",
+    "millify": "^6.1.0",
     "next": "13.4.9",
     "postcss-import": "^15.1.0",
     "react": "18.2.0",
