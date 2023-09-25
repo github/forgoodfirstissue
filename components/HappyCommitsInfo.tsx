@@ -6,7 +6,7 @@ type FilterProps = {
 
 export const HappyCommitsInfo = ({filter, setFilter}: FilterProps) => {
   return (
-    <div style={{ paddingLeft: "10%" }}>
+    <div className="flex" style={{ paddingLeft: "10%" }}>
       <div style={{ width: 541, height: 291, flexDirection: "column" }}>
         <div
           style={{

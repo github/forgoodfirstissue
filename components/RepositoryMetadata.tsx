@@ -15,7 +15,7 @@ export const RepositoryMetadata = ({
   repositoryTopics
 }: RepositoryMetadataProps) => {
   return (
-    <div className="justify-start items-start gap-6 inline-flex">
+    <div className="justify-start items-start gap-6 inline-flex flex-wrap">
       <div className="justify-start items-center gap-1 flex">
         <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
           Issues:{" "}
@@ -37,7 +37,7 @@ export const RepositoryMetadata = ({
           </div>
         </div>
       </div>
-      <div className="justify-start items-center gap-1 flex">
+      {repositoryTopics && repositoryTopics.length > 0 &&<div className="justify-start items-center gap-1 flex">
         <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
           Label:
         </div>
@@ -46,7 +46,7 @@ export const RepositoryMetadata = ({
             {repositoryTopics && repositoryTopics.map(topic => topic.display).join(', ')}
           </div>
         </div>
-      </div>
+      </div>}
       <div className="justify-start items-center gap-1 flex">
         <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
           Last activity:

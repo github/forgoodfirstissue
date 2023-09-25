@@ -57,7 +57,7 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
 
   return (
     <main className="grow">
-      <div className="p-4 w-full">
+      <div className="p-4 w-full mb-4">
         <div className="flex justify-center">
           <div className="w-[85%] justify-start items-start inline-flex mb-4">
             <FilterInfo />

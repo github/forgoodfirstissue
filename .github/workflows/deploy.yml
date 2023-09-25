@@ -66,9 +66,9 @@ jobs:
       - name: Update happycommits.json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: update happycommits.json [skip actions]
-          branch: json-updates
-          file_pattern: 'happycommits.json'
+          commit_message: update generated.json [skip actions]
+          branch: main
+          file_pattern: 'generated.json'
           skip_checkout: true
           push_options: '--force'
       - name: Static HTML export with Next.js
