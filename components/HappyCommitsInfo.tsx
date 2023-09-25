@@ -11,10 +11,7 @@ export const HappyCommitsInfo = ({filter, setFilter}: FilterProps) => {
         <div
           style={{
             color: "white",
-            fontSize: 32,
-            fontFamily: "Inter",
-            fontWeight: "400",
-            wordWrap: "break-word"
+            fontSize: 32
           }}
         >
           happy commits
@@ -22,10 +19,7 @@ export const HappyCommitsInfo = ({filter, setFilter}: FilterProps) => {
         <div
           style={{
             color: "white",
-            fontSize: 48,
-            fontFamily: "Inter",
-            fontWeight: "400",
-            wordWrap: "break-word"
+            fontSize: 48
           }}
         >
           open source
@@ -36,14 +30,10 @@ export const HappyCommitsInfo = ({filter, setFilter}: FilterProps) => {
           style={{
             color: "white",
             fontSize: 16,
-            fontFamily: "Inter",
-            fontWeight: "400",
-            wordWrap: "break-word",
             paddingBottom: "3%"
           }}
         >
-          Our mission is to curate a list of open source projects with missions that are driven by
-          social impact. Let’s commit to a better future!
+          Commiting to a better future. Our mission is to curate a list of open source projects with missions that are driven by social impact. Helping others is the best way to feel happy so lets all work together to build a better tomorrow. One commit at a time.
         </div>
         <GeneralFilter
           filter={filter}
