@@ -36,7 +36,7 @@ export const Navbar = () => {
             }}
           >
             <div style={{ color: "white", fontFamily: "Inter", fontWeight: "600" }}>
-              Add your project
+              Suggest a Project
             </div>
           </a>
         </div>
