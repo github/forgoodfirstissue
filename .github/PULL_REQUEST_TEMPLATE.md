@@ -1,12 +1,12 @@
 #### ℹ️ Repository information
 
-**The repository has**:
+**The repository**:
 
-- [ ] At least three issues with the `good first issue`, or other labels specified in `happycommits.json` (see `labels` and the end).
+- [ ] Is a social good project.
  - Link:
-- [ ] At least 10 contributors.
-- [ ] At least 1000 stars.
-- [ ] Detailed setup instructions for the project.
- - Link:
-- [ ] CONTRIBUTING.md
+- [ ] Is for a DPG (Digital Public Good) 
+- [ ] The project has tags in in its description denoting which SDGs it addresses. ie `sdg-1`, `sdg-2`, etc.
+- [ ] The project has a contributing file.
+- [ ] The project has a code of conduct file.
+- [ ] The project has a license.
 - [ ] Actively maintained (last updated less than 1 months ago).
