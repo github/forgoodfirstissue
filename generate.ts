@@ -41,15 +41,6 @@ slugify.extend({
   "+": "plus"
 });
 
-if (process.env.GH_PERSONAL_ACCESS_TOKEN) {
-  // The environment variable is set
-  console.log(process.version);
-  console.log('GH_PERSONAL_ACCESS_TOKEN is set:', process.env.GH_PERSONAL_ACCESS_TOKEN);
-} else {
-  // The environment variable is not set
-  console.log(process.version);
-  console.log('GH_PERSONAL_ACCESS_TOKEN is not set');
-}
 // Setup Octokit (GitHub API client)
 const MyOctokit = Octokit.plugin(throttling, retry);
 const octokit = new MyOctokit({
