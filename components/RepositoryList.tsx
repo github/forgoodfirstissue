@@ -66,8 +66,8 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
 
         <div className="flex justify-center">
           <div className="w-[85%] justify-start items-start inline-flex mb-8">
-            <div className="w-full grid grid-cols-2 gap-4">
-              <div>
+          <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-4">
+  <div>
                 <LanguageFilter
                   setSelectedLanguages={setSelectedLanguages}
                   languageOptions={languageOptions}
