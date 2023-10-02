@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.6",
-    "@octokit/core": "^5.0.0",
+    "@octokit/core": "^5.0.1",
     "@octokit/graphql-schema": "^14.32.1",
     "@octokit/plugin-retry": "^6.0.0",
     "@octokit/plugin-throttling": "^7.0.0",
