@@ -29,7 +29,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-select": "^5.7.4",
     "slugify": "^1.6.6",
-    "typescript": "5.0.3"
+    "typescript": "5.2.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.6",
