@@ -14,6 +14,10 @@ base, html {
   > * p {
     max-width: 60ch;
   }
+
+  p > a {
+    color: #fff;
+  }
 }
 
 .search-form {

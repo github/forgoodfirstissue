@@ -23,7 +23,7 @@ export const Header = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Suggest a Project
+            Contribute<span className={styles.hideSm}> to a project</span>
           </Button>
         </div>
       </header>
