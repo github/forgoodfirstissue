@@ -1,26 +1,15 @@
-import { GitHubIcon } from "./GitHubIcon";
-import { HappyCommitsInfo } from "./HappyCommitsInfo";
-import { BinaryCode } from "./BinaryCode";
+import {Hero} from '@primer/react-brand';
 
-type FilterProps = {
-  filter: string;
-  setFilter: (filter: string) => void;
-};
-
-export const HeroContainer = ({filter, setFilter}: FilterProps) => {
+export const HeroContainer = () => {
   return (
     <>
-      <div
-        style={{
-          background:
-            "linear-gradient(278deg, #26C6D0 10%, #4F5BE3 40%, #604FDD 53%, #4B449A 77%, #3A3A62 98%)",
-            overflowX: "hidden", height: 520, overflow: "hidden"
-        }}
-      >
-        <GitHubIcon />
-        <HappyCommitsInfo filter={filter} setFilter={setFilter} />
-        <BinaryCode />
-      </div>
+      <Hero className="hero" data-color-mode="dark">
+        <Hero.Heading size="display">For Good First Issue</Hero.Heading>
+        <Hero.Description size="300">
+          For Good First Issue empowers developers to collaborate on open source projects with missions that are driven by social impact. It is a curated list of open source projects focused on the <a href="https://digitalpublicgoods.net/digital-public-goods/" target="_blank" rel="noopener noreferrer">Digital Public Goods (DPGs)</a> that need your help! Together, we can drive positive and lasting contributions to the world, one commit at a time.
+        </Hero.Description>
+        <Hero.PrimaryAction href="https://github.com/rubyforgood/happycommits">Contribute to a project</Hero.PrimaryAction>
+      </Hero>
     </>
   );
 };

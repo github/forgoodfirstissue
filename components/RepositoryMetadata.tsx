@@ -15,47 +15,34 @@ export const RepositoryMetadata = ({
   repositoryTopics
 }: RepositoryMetadataProps) => {
   return (
-    <div className="justify-start items-start gap-6 inline-flex flex-wrap">
-      <div className="justify-start items-center gap-1 flex">
-        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
-          Issues:{" "}
-        </div>
-        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
-          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
-            {repositoryNumIssues}
-            {repositoryNumIssues >= 10 ? "+" : ""}
-          </div>
-        </div>
+    <div className="repo-item__meta">
+      <div>
+        Issues:{" "}
+        <span>
+          {repositoryNumIssues}
+          {repositoryNumIssues >= 10 ? "+" : ""}
+        </span>
       </div>
-      <div className="justify-start items-center gap-1 flex">
-        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
-          Language:{" "}
-        </div>
-        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
-          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
-            {repositoryLang}
-          </div>
-        </div>
+
+      <div>
+        Language:{" "}
+        <span>
+          {repositoryLang}
+        </span>
       </div>
-      {repositoryTopics && repositoryTopics.length > 0 &&<div className="justify-start items-center gap-1 flex">
-        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
-          Label:
-        </div>
-        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
-          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
-            {repositoryTopics && repositoryTopics.map(topic => topic.display).join(', ')}
-          </div>
-        </div>
+
+      {repositoryTopics && repositoryTopics.length > 0 && <div>
+        Label:
+        <span>
+          {repositoryTopics && repositoryTopics.map(topic => topic.display).join(', ')}
+        </span>
       </div>}
-      <div className="justify-start items-center gap-1 flex">
-        <div className="text-zinc-900 text-sm font-normal font-['Inter'] leading-[21px]">
-          Last activity:
-        </div>
-        <div className="px-2 py-1 bg-violet-50 rounded justify-center items-center gap-2 flex">
-          <div className="text-slate-700 text-[13px] font-normal font-['Source Sans Pro']">
-            {lastModified}
-          </div>
-        </div>
+
+      <div>
+        Last activity:
+        <span>
+          {lastModified}
+        </span>
       </div>
     </div>
   );

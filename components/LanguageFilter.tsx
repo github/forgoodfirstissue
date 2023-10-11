@@ -8,8 +8,11 @@ type LanguageFilterProps = {
 export const LanguageFilter = ({ setSelectedLanguages, languageOptions }: LanguageFilterProps) => {
   return (
     <>
-    <label className="">Language</label>
-    <Select isMulti closeMenuOnSelect={false} className="" onChange={(selectedOptions) => setSelectedLanguages(selectedOptions.map((option) => option.value))} options={languageOptions} classNamePrefix="select" />
+      <div>
+        <label className="label">Language</label>
+        <Select isMulti closeMenuOnSelect={false} className="" onChange={(selectedOptions) => setSelectedLanguages(selectedOptions.map((option) => option.value))} options={languageOptions} classNamePrefix="select" />
+      </div>
     </>
+
   );
 };

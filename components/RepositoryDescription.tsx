@@ -6,8 +6,8 @@ type RepositoryDescriptionProps = {
 
 export const RepositoryDescription = ({ repositoryDescription }: RepositoryDescriptionProps) => {
   return (
-    <div className="text-zinc-900 text-base font-normal font-['Inter'] leading-normal mb-2">
+    <p className="repo-item__desc">
       {repositoryDescription}{" "}
-    </div>
+    </p>
   );
 };

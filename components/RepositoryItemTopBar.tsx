@@ -18,19 +18,19 @@ export const RepositoryItemTopBar = ({
   repositoryUrl
 }: RepositoryItemTopBarProps) => {
   return (
-    <div className="w-full px-6 py-2 bg-violet-100 justify-between items-center inline-flex">
+    <div className="repo-item__top-bar">
       <a
         href={repositoryUrl}
         rel="noopener noreferrer"
         target="_blank"
         title={`Open ${repositoryOwner}/${repositoryName} on GitHub`}
       >
-        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
-          <div className="hover:text-indigo-600 self-stretch text-zinc-900 text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+        <div className="repo-item__name">
+          <h3>
             {repositoryName}
-          </div>
-          <div className="hover:text-indigo-600 self-stretch text-zinc-900 text-base font-normal font-['Inter'] leading-normal">
-            {repositoryOwner}
+          </h3>
+          <div className="repo-item__owner">
+            &nbsp;/ {repositoryOwner}
           </div>
         </div>
       </a>

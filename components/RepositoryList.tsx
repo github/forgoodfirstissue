@@ -5,11 +5,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { IndexedTopics } from "../topics";
 import { Repository } from "../types";
-import { FilterInfo } from "./FilterInfo";
+
 import { LanguageFilter } from "./LanguageFilter";
 import { RepositoryItem } from "./RepositoryItem";
 import { SDGFilter } from "./SDGFilter";
-import { ProjectHeader } from "./ProjectHeader";
+import {Grid, Stack} from '@primer/react-brand';
+
 
 type RepositoryListProps = {
   repositories: Repository[];
@@ -28,16 +29,23 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
+
   const filteredRepositories = repositories.filter((repository) => {
     const languageFilter =
       selectedLanguages.length === 0 || selectedLanguages.includes(repository.language.display);
+
     const topicFilter =
       selectedTopics.length === 0 ||
       repository.topics?.some((topic) => selectedTopics.includes(topic.display));
+
     const nameFilter = Object.values(repository).some(
       (value) => value && value.toString().toLowerCase().includes(filter.toLowerCase())
     );
-    return languageFilter && nameFilter && topicFilter;
+
+    const happyContainer = Object.values(repository).some(
+      (value) => value && value.toString().toLowerCase().includes(filter.toLowerCase())
+    );
+    return languageFilter && nameFilter && topicFilter && happyContainer;
   });
 
   const uniqueLanguages = [
@@ -56,41 +64,31 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
   const hasMoreItems = items < filteredRepositories.length;
 
   return (
-    <main className="grow">
-      <div className="p-4 w-full mb-4">
-        <div className="flex justify-center">
-          <div className="w-[85%] justify-start items-start inline-flex mb-4">
-            <FilterInfo />
-          </div>
-        </div>
-
-        <div className="flex justify-center">
-          <div className="w-[85%] justify-start items-start inline-flex mb-8">
-          <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-4">
-  <div>
-                <LanguageFilter
-                  setSelectedLanguages={setSelectedLanguages}
-                  languageOptions={languageOptions}
-                />
-              </div>
-              <div>
-                <SDGFilter setSelectedTopics={setSelectedTopics} topicOptions={topicOptions} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <ProjectHeader />
-        <InfiniteScroll
-          dataLength={items}
-          next={loadMoreItems}
-          hasMore={hasMoreItems}
-          loader={<Loader />}
-        >
-          {filteredRepositories.slice(0, items).map((repository) => (
-            <RepositoryItem key={repository.id} repository={repository} />
-          ))}
-        </InfiniteScroll>
+    <main className="repoWrap">
+      <div className="grid-wrap">
+        <Grid>
+          <Grid.Column span={{xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3}}>
+            <Stack className="stack">
+              <LanguageFilter
+                setSelectedLanguages={setSelectedLanguages}
+                languageOptions={languageOptions}
+              />
+              <SDGFilter setSelectedTopics={setSelectedTopics} topicOptions={topicOptions} />
+            </Stack>
+          </Grid.Column>
+          <Grid.Column className="repo-list-wrap" span={{xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9}}>
+              <InfiniteScroll
+                dataLength={items}
+                next={loadMoreItems}
+                hasMore={hasMoreItems}
+                loader={<Loader />}
+              >
+                {filteredRepositories.slice(0, items).map((repository) => (
+                  <RepositoryItem key={repository.id} repository={repository} />
+                ))}
+              </InfiniteScroll>
+          </Grid.Column>
+        </Grid>
       </div>
     </main>
   );

@@ -8,17 +8,19 @@ type SDGFilterProps = {
 export const SDGFilter = ({ setSelectedTopics, topicOptions }: SDGFilterProps) => {
   return (
     <>
-      <label className="">Sustainable Development Goal (SDG)</label>
-      <Select
-        isMulti
-        className=""
-        options={topicOptions}
-        getOptionLabel={(option) => option.label}
-        getOptionValue={(option) => option.value ?? ""}
-        onChange={(selectedOptions) =>
-          setSelectedTopics(selectedOptions.map((option) => option.value ?? ""))
-        }
-      />
+      <div>
+        <label className="label">Sustainable Development Goal (SDG)</label>
+        <Select
+          isMulti
+          className=""
+          options={topicOptions}
+          getOptionLabel={(option) => option.label}
+          getOptionValue={(option) => option.value ?? ""}
+          onChange={(selectedOptions) =>
+            setSelectedTopics(selectedOptions.map((option) => option.value ?? ""))
+          }
+        />
+      </div>
     </>
   );
 };
