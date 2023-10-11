@@ -7,7 +7,7 @@ type GeneralFilterProps = {
 
 export const GeneralFilter = ({ filter, setFilter }: GeneralFilterProps) => {
   return (
-    <div className="flex border bg-vanilla-100 rounded-sm mr-4">
+    <div className="search-form">
       <FaSearch className="self-center mr-2 ml-2" />
       <input
         type="text"

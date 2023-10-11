@@ -1,26 +1,15 @@
-import { GitHubIcon } from "./GitHubIcon";
-import { HappyCommitsInfo } from "./HappyCommitsInfo";
-import { BinaryCode } from "./BinaryCode";
+import {Hero} from '@primer/react-brand';
 
-type FilterProps = {
-  filter: string;
-  setFilter: (filter: string) => void;
-};
-
-export const HeroContainer = ({filter, setFilter}: FilterProps) => {
+export const HeroContainer = () => {
   return (
     <>
-      <div
-        style={{
-          background:
-            "linear-gradient(278deg, #26C6D0 10%, #4F5BE3 40%, #604FDD 53%, #4B449A 77%, #3A3A62 98%)",
-            overflowX: "hidden", height: 520, overflow: "hidden"
-        }}
-      >
-        <GitHubIcon />
-        <HappyCommitsInfo filter={filter} setFilter={setFilter} />
-        <BinaryCode />
-      </div>
+      <Hero className="hero" data-color-mode="dark">
+        <Hero.Label>Happy Commits</Hero.Label>
+        <Hero.Heading size="display">Open Source Social Impact Projects</Hero.Heading>
+        <Hero.Description size="300">
+          Committing to a better future. Our mission is to curate a list of open source projects with missions that are driven by social impact. Helping others is the best way to feel happy so lets all work together to build a better tomorrow. One commit at a time.
+        </Hero.Description>
+      </Hero>
     </>
   );
 };

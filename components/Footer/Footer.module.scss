@@ -1,0 +1,163 @@
+
+.footer {
+  margin-top: 120px;
+  z-index: 2;
+  background: #0d1117;
+  color: #959da5;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--fgColor-muted, var(--color-fg-muted)) !important;
+  }
+
+  .footer__container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 36px;
+
+    @media (min-width: 800px) {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-top: 76px;
+      padding-bottom: 72px;
+    }
+
+    .github {
+      width: 100%;
+      margin-bottom: 36px;
+
+      @media (min-width: 800px) {
+        width: calc(25% - 12px);
+      }
+    }
+
+    .product,
+    .platform,
+    .support,
+    .company {
+      width: calc(50% - 12px);
+      margin-bottom: 36px;
+
+      @media (min-width: 800px) {
+        width: calc(15% - 12px);
+      }
+
+      b,
+      li {
+        margin-bottom: 12px;
+      }
+
+      b {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      li:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .socials__wrapper {
+    background: #161b22;
+    font-size: 12px;
+    p, a, small {
+      font-size: 12px;
+    }
+  }
+
+  .socials {
+    width: 90%;
+
+    @media (min-width: 800px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+
+    color: #959da5;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8px 0;
+
+    .socials__left {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 0;
+
+      li {
+        margin: 0 8px;
+      }
+
+
+      @media (min-width: 800px) {
+        justify-content: flex-start;
+
+        li {
+          margin: 0 16px 0 0;
+        }
+      }
+
+
+      li:hover:not(:first-child) {
+        text-decoration: underline;
+      }
+    }
+
+    .socials__right {
+      padding: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      li {
+        margin: 0 8px;
+        height: 18px;
+      }
+
+      @media (min-width: 800px) {
+        justify-content: flex-end;
+
+        li {
+          margin: 0 16px 0 0;
+          height: 18px;
+        }
+      }
+
+      svg {
+        height: 18;
+      }
+    }
+  }
+}
+
+
+.subscribeWrap {
+  margin-top: 16px;
+  p {
+    margin-top: 6px;
+    color: var(--fgColor-muted, var(--color-fg-muted));
+  }
+  a {
+    margin-top: 12px;
+  }
+}
+p.textWhite {
+  color: #fff !important;
+}

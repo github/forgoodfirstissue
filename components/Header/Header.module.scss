@@ -1,0 +1,15 @@
+
+.siteHeader {
+  background: #26292E;
+
+  > div {
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 36px;
+    max-width: 1440px;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
