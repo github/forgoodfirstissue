@@ -19,11 +19,11 @@ export const Header = () => {
           <Button
             variant="primary"
             as="a"
-            href="https://github.com/rubyforgood/happycommits"
+            href="https://github.com/rubyforgood/happycommits/issues/new?assignees=&labels=💪+New+Project&projects=&template=suggest_project.yml&title=%5BNew+Project%5D%3A+%3Ctitle%3E"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Contribute<span className={styles.hideSm}> to a project</span>
+            Submit<span className={styles.hideSm}> a project</span>
           </Button>
         </div>
       </header>
