@@ -323,18 +323,18 @@ const getRepositories = async (
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
-          <loc>https://happycommits.dev</loc>
+          <loc>https://forgoodfirstissue.dev</loc>
         </url>
         ${data.languages
           .map(
             (language: CountableTagModel) =>
-              `<url><loc>https://happycommits.dev/language/${language.id}</loc></url>`
+              `<url><loc>https://forgoodfirstissue.dev/language/${language.id}</loc></url>`
           )
           .join("")}
         ${data.topics
           .map(
             (topic: CountableTagModel) =>
-              `<url><loc>https://happycommits.dev/topic/${topic.id}</loc></url>`
+              `<url><loc>https://forgoodfirstissue.dev/topic/${topic.id}</loc></url>`
           )
           .join("")}
       </urlset>

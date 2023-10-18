@@ -1,4 +1,4 @@
-name: Deploy to happycommits.dev
+name: Deploy to forgoodfirstissue.dev
 
 on:
   # Runs on pushes targeting the default branch
