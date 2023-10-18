@@ -17,5 +17,16 @@
     .hideSm {
       display: none;
     }
+
+    a:not(.homeLink) {
+      padding: 8px 12px;
+      grid-gap: 4px;
+    }
+
+    .btnText {
+      font-size: 12px !important;
+      line-height: 1 !important;
+      white-space: nowrap;
+    }
   }
 }
