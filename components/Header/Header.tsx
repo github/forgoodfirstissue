@@ -8,7 +8,7 @@ export const Header = () => {
     <>
       <header className={styles.siteHeader} data-color-mode="dark">
         <div>
-          <Link href="/">
+          <Link href="/" className={styles.homeLink}>
             <Image
               src="/for-good-first-issue.svg"
               width={144}
@@ -23,7 +23,7 @@ export const Header = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Recommend a project
+            <span className={styles.btnText}>Recommend a project</span>
           </Button>
         </div>
       </header>
