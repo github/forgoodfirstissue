@@ -13,7 +13,7 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Happy Commits | Make your next open-source contribution matter."
+          content="For Good First Issue | Make your next open-source contribution matter."
         />
         <meta property="og:image" content="https://forgoodfirstissue.dev/" />
 
