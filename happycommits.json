@@ -113,6 +113,7 @@
     "OpenTeleRehab/therapist-web-app",
     "OpenTeleRehab/patient-service",
     "OpenTermsArchive/engine",
+    "OpenTermsArchive/contrib-declarations",
     "Open-Attestation/open-attestation",
     "openimis/openimis-dist_dkr",
     "openmrs/openmrs-core",
