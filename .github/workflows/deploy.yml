@@ -3,7 +3,7 @@ name: Deploy to forgoodfirstissue.dev
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ["deploy"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -67,7 +67,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: update generated.json [skip actions]
-          branch: main
+          branch: deploy
           file_pattern: 'generated.json'
           skip_checkout: true
           push_options: '--force'
