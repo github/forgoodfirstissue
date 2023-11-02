@@ -27,10 +27,7 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
 
   return (
     <div className="repo-item">
-      <div
-        id={`repo-${repository.id}`}
-        onClick={() => setIsIssueOpen(!isIssueOpen)}
-      >
+      <div id={`repo-${repository.id}`} onClick={() => setIsIssueOpen(!isIssueOpen)}>
         <div>
           <RepositoryItemTopBar
             isIssueOpen={isIssueOpen}
