@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta
           name="description"
-          content="Making your next open-source contribution make the world better. Happy Commits is a curated list of accessible issues from open-source projects helping our communities. Start today!"
+          content="Making your next open-source contribution make the world better. For Good First Issue is a curated list of accessible issues from open-source projects helping our communities. Start today!"
         />
 
         <meta property="og:url" content="https://forgoodfirstissue.dev" />
@@ -22,11 +22,11 @@ export default function Document() {
         <meta property="twitter:url" content="https://forgoodfirstissue.dev" />
         <meta
           name="twitter:title"
-          content="Happy Commits | Make your next open-source contribution matter."
+          content="For Good First Issue | Make your next open-source contribution matter."
         />
         <meta
           name="twitter:description"
-          content="Making your next open-source contribution make the world better. Happy Commits is a curated list of accessible issues from open-source projects helping our communities. Start today!"
+          content="Making your next open-source contribution make the world better. For Good First Issueis a curated list of accessible issues from open-source projects helping our communities. Start today!"
         />
         <meta name="twitter:image" content="https://forgoodfirstissue.dev/" />
 

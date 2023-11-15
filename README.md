@@ -1,20 +1,20 @@
 Welcome! 👋🏼
 
-**Happy Commits** curates social impact and civic tech open source projects that are looking for contributors and lists issues on thost projects that are tagged with Help Wanted or Good First Issue.
+**For Good First Issue** curates social impact and civic tech open source projects that are looking for contributors and lists issues on thost projects that are tagged with Help Wanted or Good First Issue.
 
-Open-source maintainers are always looking to get more people involved, but it can be challenging to become a contributor. Happy Commits lowers the barrier for future contributions to social and civic good projects - and this is why it exists.
+Open-source maintainers are always looking to get more people involved, but it can be challenging to become a contributor. For Good First Issue lowers the barrier for future contributions to social and civic good projects - and this is why it exists.
 
 ## Adding a new project
 
-You're welcome to add a new project in First Issue, just follow these steps:
+You're welcome to add a new project in For Good First Issue, just follow these steps:
 
-- To maintain the quality of projects in First Issue, please make sure the GitHub repository you want to add meets the following criteria:
+- To maintain the quality of projects in For Good First Issue, please make sure the GitHub repository you want to add meets the following criteria:
 
-  - It has at least three issues with the `good first issue` label or other labels defined in `happycommits.json` (see `labels` and the end).
+  - It is a social impact or civic tech project.
 
-  - It has at least 10 contributors.
+  - Ideally, it tags its issues with `help wanted` or `good first issue`.
 
-  - It has at least 1000 stars.
+  - In the repository description it lists the sdg(s) it is working on. See [here](https://github.com/rubyforgood/human-essentials) for an example.
 
   - It contains a README.md with detailed setup instructions for the project, and a CONTRIBUTING.md with guidelines for new contributors.
 
