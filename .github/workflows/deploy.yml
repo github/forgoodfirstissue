@@ -1,9 +1,9 @@
-name: Deploy to forgoodfirstissue.dev
+name: Deploy to forgoodfirstissue.github.com
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["gh-pages"]
+    branches: ["deploy"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
