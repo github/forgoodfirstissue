@@ -1,3 +1,5 @@
+<!-- If adding a project to For Good First Issue please uncomment and include the following: 
+
 #### ℹ️ Repository information
 
 **The repository**:
@@ -10,3 +12,5 @@
 - [ ] The project has a code of conduct file.
 - [ ] The project has a license.
 - [ ] Actively maintained (last updated less than 1 months ago).
+-->
+

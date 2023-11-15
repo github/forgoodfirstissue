@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Happy Commits | Make your next open-source contribution matter.</title>
+        <title>For Good First Issue | Make your next open-source contribution matter.</title>
       </Head>
 
       <Header />
