@@ -119,25 +119,19 @@ base, html {
   @media(min-width: 1012px) {
     margin-bottom: 32px;
   }
-}
-
-.repo-item__name {
-  display: flex;
-  color: #096BDE;
-  font-size: 16px;
-  line-height: 1.5;
 
   h3 {
+    display: flex;
+    color: #096BDE;
     font-size: 16px;
+    line-height: 1.5;
     font-weight: 400;
-  }
-  .repo-item__owner {
-    font-weight: 600;
-  }
 
-  @media(min-width: 1012px) {
-    font-size: 24px;
-    h3 {
+    .repo-item__name {
+      font-weight: 600;
+    }
+
+    @media(min-width: 1012px) {
       font-size: 24px;
     }
   }
