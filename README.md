@@ -1,6 +1,6 @@
 Welcome! 👋🏼
 
-**For Good First Issue** curates social impact and civic tech open source projects that are looking for contributors and lists issues on thost projects that are tagged with Help Wanted or Good First Issue.
+**For Good First Issue** curates social impact and civic tech open source projects that are looking for contributors and lists issues on those projects that are tagged with Help Wanted or Good First Issue.
 
 Open-source maintainers are always looking to get more people involved, but it can be challenging to become a contributor. For Good First Issue lowers the barrier for future contributions to social and civic good projects - and this is why it exists.
 
