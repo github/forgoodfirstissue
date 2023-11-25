@@ -47,10 +47,10 @@ body:
     attributes:
       label: Code of Conduct
       description: By submitting this issue, you agree to follow our [Code of
-        Conduct](https://github.com/rubyforgood/human-essentials/blob/1f90a512824d8fae1951c7517cdcf491ca3218dc/code-of-conduct.md)
+        Conduct](https://github.com/github/.github/blob/main/CODE_OF_CONDUCT.md)
       options:
         - label: I've read the Code of Conduct and understand my responsibilities as a
-            member of the Ruby for Good community
+            member of the GitHub community
           required: true
   - type: textarea
     attributes:
