@@ -31,7 +31,9 @@ export default function Document() {
         <meta name="twitter:image" content="https://forgoodfirstissue.dev/" />
 
         <meta charSet="UTF-8" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="/android-favicon.png" />
+        <link rel="shortcut icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <body>
         <Main />
