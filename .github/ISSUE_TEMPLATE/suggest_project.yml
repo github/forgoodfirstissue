@@ -29,7 +29,8 @@ body:
       description: You can check the DPG Registry
         [here](https://digitalpublicgoods.net/registry/),
       options:
-        - label: This Project is a DPG
+        - label: "Yes"
+        - label: "No"
           required: true
   - type: checkboxes
     id: SDGs
