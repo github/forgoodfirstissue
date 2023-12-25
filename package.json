@@ -34,7 +34,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.5.4",
+    "@next/eslint-plugin-next": "^14.0.4",
     "@octokit/core": "^5.0.1",
     "@octokit/graphql-schema": "^14.34.0",
     "@octokit/plugin-retry": "^6.0.0",
