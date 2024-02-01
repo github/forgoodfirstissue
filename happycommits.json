@@ -45,6 +45,7 @@
     "devgateway/amp",
     "dimagi/commcare-hq",
     "dhis2/dhis2-core",
+    "dhis2/ui",
     "drivendataorg/deon",
     "drivendataorg/zamba",
     "drupal/drupal",
