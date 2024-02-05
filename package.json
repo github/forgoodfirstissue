@@ -18,7 +18,7 @@
     "@next/font": "^13.5.4",
     "@primer/react-brand": "^0.27.1",
     "@types/node": "18.11.18",
-    "@types/react": "18.2.22",
+    "@types/react": "18.2.53",
     "@types/react-dom": "18.2.7",
     "dayjs": "^1.11.7",
     "millify": "^6.1.0",
