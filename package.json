@@ -23,7 +23,7 @@
     "dayjs": "^1.11.7",
     "millify": "^6.1.0",
     "next": "13.4.9",
-    "postcss-import": "^15.1.0",
+    "postcss-import": "^16.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
