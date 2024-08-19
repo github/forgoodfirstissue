@@ -11,11 +11,11 @@
     "prebuild": "ts-node generate.ts"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@next/font": "^13.5.4",
+    "@next/font": "^14.2.5",
     "@primer/react-brand": "^0.27.1",
     "@types/node": "20.12.12",
     "@types/react": "18.2.56",
@@ -51,7 +51,7 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.41",
     "prettier": "^2.8.1",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.1"
