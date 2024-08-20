@@ -2,6 +2,11 @@ name: Check pull request
 
 on: [push, pull_request]
 
+permissions:
+  actions: write
+  contents: read
+  pages: write
+
 jobs:
   # Build job
   build:
