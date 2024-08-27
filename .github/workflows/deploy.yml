@@ -71,8 +71,6 @@ jobs:
           file_pattern: 'generated.json'
           skip_checkout: true
           push_options: '--force'
-      - name: Static HTML export with Next.js
-        run: npm run export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
