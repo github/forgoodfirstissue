@@ -31,6 +31,7 @@
     "sass": "^1.69.3",
     "slugify": "^1.6.6",
     "typescript": "5.2.2"
+    "sasijs" : "1.0.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.5.4",

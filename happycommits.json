@@ -186,7 +186,8 @@
     "ushahidi/platform-client-mzima",
     "vrapeutic/Rodja-webXR",
     "WFP-VAM/prism-app",
-    "Zenysis/Harmony"
+    "Zenysis/Harmony",
+    "ishitaguptabits"
   ],
   "labels": [
     "good first issue",
