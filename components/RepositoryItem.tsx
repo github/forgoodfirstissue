@@ -14,6 +14,7 @@ type RepositoryItemProps = {
 
 export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
   const [isIssueOpen, setIsIssueOpen] = useState(false);
+  const [isIssuesListVisible, setIsIssuesListVisible] = useState(false);
 
   dayjs.extend(relativeTime);
   const useLastModified = (date: string) => {
@@ -25,10 +26,20 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
   };
   const lastModified = useLastModified(repository.last_modified);
 
+  useEffect(() => {
+    if (isIssueOpen) {
+      setIsIssuesListVisible(true);
+    } else {
+      // Delay unmounting to allow close animation to complete
+      const timer = setTimeout(() => setIsIssuesListVisible(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isIssueOpen]);
+
   return (
     <div className="repo-item">
-      <div id={`repo-${repository.id}`} onClick={() => setIsIssueOpen(!isIssueOpen)}>
-        <div>
+      <div id={`repo-${repository.id}`}>
+        <div onClick={() => setIsIssueOpen(!isIssueOpen)}>
           <RepositoryItemTopBar
             isIssueOpen={isIssueOpen}
             repositoryHasNewIssues={repository.has_new_issues}
@@ -50,7 +61,9 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
             />
           </div>
         </div>
-        {isIssueOpen && <IssuesList issues={repository.issues} />}
+        <div className={`repo-item__issues-warper ${isIssueOpen ? 'open' : ''}`}>
+          {isIssuesListVisible && <IssuesList issues={repository.issues} />}
+        </div>
       </div>
     </div>
   );
