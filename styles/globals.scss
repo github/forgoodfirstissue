@@ -170,6 +170,19 @@ base, html {
   }
 }
 
+.repo-item__issues-warper {
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  &.open {
+    max-height: 1000px;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .repo-item__issue-list {
   display: flex;
   flex-direction: column;
