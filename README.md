@@ -1,4 +1,4 @@
-Welcome! 👋🏼
+Welcome! 👋🏼..  knowing the flow of open source, 
 
 **For Good First Issue** curates social impact and civic tech open source projects that are looking for contributors and lists issues on those projects that are tagged with Help Wanted or Good First Issue.
 
