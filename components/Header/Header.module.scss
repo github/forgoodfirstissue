@@ -1,6 +1,5 @@
-
 .siteHeader {
-  background: #26292E;
+  background: #26292e;
 
   > div {
     height: 72px;
@@ -13,7 +12,13 @@
     margin: 0 auto;
   }
 
-  @media(max-width: 800px) {
+  > div > div {
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+  }
+
+  @media (max-width: 800px) {
     .hideSm {
       display: none;
     }

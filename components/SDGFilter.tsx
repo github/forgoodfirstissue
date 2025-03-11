@@ -1,4 +1,5 @@
 import Select from "react-select";
+import { ColorStyles } from "./ColorStyles";
 
 type SDGFilterProps = {
   setSelectedTopics: (topics: string[]) => void;
@@ -13,6 +14,7 @@ export const SDGFilter = ({ setSelectedTopics, topicOptions }: SDGFilterProps) =
         <Select
           isMulti
           className=""
+          styles={ColorStyles}
           options={topicOptions}
           getOptionLabel={(option) => option.label}
           getOptionValue={(option) => option.value ?? ""}

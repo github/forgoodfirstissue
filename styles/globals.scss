@@ -26,7 +26,7 @@ base, html {
 
 .search-form svg {
   position: relative;
-  color: var(--light-text-secondary, #57606A);
+  color: var(--brand-color-text-default);
   position: absolute;
   left: 12px;
   z-index: 2;
@@ -37,9 +37,9 @@ base, html {
 .search-form input {
   position: relative;
   border-radius: 100px;
-  border: 1px solid var(--light-border, #B7BFC7);
-  background: var(--light-bg-primary, #FFF);
-  color: var(--light-text-secondary, #57606A);
+  border: 1px solid var(--brand-color-border-muted);
+  background: var(--brand-color-canvas-default);
+  color: var(--brand-color-text-default);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -50,6 +50,7 @@ base, html {
 }
 
 .label {
+  color: var(--brand-color-text-default);
   font-size: 14px;
   font-weight: 500;
 }
@@ -86,11 +87,10 @@ base, html {
 }
 
 .repo-item {
-  background: white;
+  background: var(--brand-color-canvas-default);
   border-radius: 6px;
-  border: 1px solid var(--light-border, #B7BFC7);
-  background: var(--light-bg-primary, #FFF);
-  box-shadow: 0px 2.76726px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 6.6501px 5.32008px 0px rgba(0, 0, 0, 0.04), 0px 12.52155px 10.01724px 0px rgba(0, 0, 0, 0.03), 0px 22.33631px 17.86905px 0px rgba(0, 0, 0, 0.03), 0px 41.77761px 33.42209px 0px rgba(0, 0, 0, 0.02), 0px 100px 80px 0px rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--brand-color-border-muted);
+  background: var(--brand-color-canvas-default);
   margin-bottom: 32px;
 
   padding: 24px 16px;
@@ -122,7 +122,7 @@ base, html {
 
   h3 {
     display: flex;
-    color: #096BDE;
+    color: var(--brand-color-focus);
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
@@ -135,10 +135,13 @@ base, html {
       font-size: 24px;
     }
   }
+  span {
+    color: var(--brand-color-text-subtle);
+  }
 }
 
 .repo-item__desc {
-  color: var(--light-text-secondary, #57606A);
+  color: var(--brand-color-text-default);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -153,7 +156,7 @@ base, html {
 .repo-item__meta {
   display: flex;
   grid-gap: 16px;
-  color: var(--light-text-secondary, #57606A);
+  color: var(--brand-color-neutral-emphasis);
   margin-top: 16px;
   font-size: 14px;
   flex-wrap: wrap;
@@ -165,7 +168,7 @@ base, html {
 
     span {
       font-weight: 600;
-      color: #24292F;
+      color: var(--brand-color-text-subtle);
     }
   }
 }
@@ -189,7 +192,7 @@ base, html {
   grid-gap: 12px;
   width: 100%;
   padding: 0;
-  color: var(--light-text-secondary, #57606A);
+  color: var(--brand-color-text-subtle);
   font-size: 12px;
   border-top: 1px solid #B7BFC7;
   padding-top: 16px;
@@ -200,12 +203,13 @@ base, html {
     grid-gap: 8px;
 
     span {
+      color: var(--brand-color-text-default);
       min-width: 44px;
     }
 
     a {
       text-decoration: none;
-      color: var(--light-text-secondary, #57606A);
+      color: var(--brand-color-text-default);
     }
 
     @media(min-width: 1012px) {
