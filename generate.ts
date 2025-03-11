@@ -1,20 +1,8 @@
 import { Octokit } from "@octokit/core";
-import {
-  Issue,
-  IssueEdge,
-  Label,
-  LabelEdge,
-  Language,
-  Query,
-  Repository,
-  RepositoryTopic,
-  RepositoryTopicEdge,
-  SearchResultItemEdge,
-  validate
-} from "@octokit/graphql-schema";
 import { retry } from "@octokit/plugin-retry";
 import { throttling } from "@octokit/plugin-throttling";
 import { RequestOptions } from "@octokit/types";
+import { buildSchema, GraphQLSchema, parse, validate as validateGraphQL } from "graphql";
 import dayjs from "dayjs";
 import fs from "fs";
 import millify from "millify";
@@ -27,6 +15,73 @@ import {
   Repository as RepositoryModel,
   Tag as TagModel
 } from "./types";
+
+// Define interfaces for GitHub GraphQL types
+interface GithubRepository {
+  id: string;
+  name: string;
+  owner: {
+    login: string;
+  };
+  isArchived: boolean;
+  isDisabled: boolean;
+  isPrivate: boolean;
+  primaryLanguage: {
+    id: string;
+    name: string;
+  } | null;
+  stargazerCount: number;
+  issues: {
+    totalCount: number;
+    edges: Array<{
+      node: GithubIssue;
+    }> | null;
+  };
+  pushedAt: string;
+  licenseInfo: {
+    name: string;
+  } | null;
+  description: string | null;
+  url: string;
+  repositoryTopics: {
+    edges: Array<{
+      node: {
+        topic: {
+          name: string;
+          id: string;
+        };
+      };
+    }> | null;
+  };
+}
+
+interface GithubIssue {
+  id: string;
+  title: string;
+  number: number;
+  url: string;
+  comments: {
+    totalCount: number;
+  };
+  createdAt: string;
+  labels?: {
+    edges: Array<{
+      node: {
+        id: string;
+        name: string;
+      };
+    }> | null;
+  };
+}
+
+interface GraphQLResponse {
+  search: {
+    repositoryCount: number;
+    edges: Array<{
+      node: GithubRepository;
+    }>;
+  };
+}
 
 /** Number of repositories to query per request (max 100, but set to a smaller number to prevent timeouts) */
 const REPOS_PER_REQUEST = 25;
@@ -76,16 +131,11 @@ const octokit = new MyOctokit({
 
 /**
  * Retrieve a list of repositories by calling GitHub GraphQL API.
- *
- * Use {@link https://docs.github.com/en/graphql/overview/explorer GitHub's GraphQL API explorer} to
- * build and test the search query.
  */
 const getRepositories = async (
   repositories: string[],
   labels: string[]
 ): Promise<RepositoryModel[]> => {
-  // Filter results with search qualifiers
-  // See https://docs.github.com/en/search-github/searching-on-github/searching-for-repositories
   const searchQuery = [
     ...repositories.map((repo) => `repo:${repo}`),
     "archived:false",
@@ -117,7 +167,6 @@ const getRepositories = async (
               name
             }
             stargazerCount
-            # return first 10 open issues with one or more of the labels we want
             issues( 
               states: OPEN
               filterBy: {labels: [${labels.map((label) => `"${label}"`).join(",")}]}
@@ -135,6 +184,14 @@ const getRepositories = async (
                     totalCount
                   }
                   createdAt
+                  labels(first: 10) {
+                    edges {
+                      node {
+                        id
+                        name
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -161,90 +218,196 @@ const getRepositories = async (
   }
   `;
 
-  const gqlQueryErrors = validate(gqlQuery);
+  // Create schema for validation
+  const schema = buildSchema(`
+    type Query {
+      search(query: String!, type: SearchType!, first: Int!): SearchResultItemConnection!
+    }
+    
+    enum SearchType {
+      REPOSITORY
+    }
+    
+    type SearchResultItemConnection {
+      repositoryCount: Int!
+      edges: [SearchResultItemEdge!]!
+    }
+    
+    type SearchResultItemEdge {
+      node: Repository!
+    }
+    
+    type Repository {
+      id: ID!
+      name: String!
+      owner: RepositoryOwner!
+      isArchived: Boolean!
+      isDisabled: Boolean!
+      isPrivate: Boolean!
+      primaryLanguage: Language
+      stargazerCount: Int!
+      issues(states: [IssueState!], filterBy: IssueFilters, orderBy: IssueOrder, first: Int!): IssueConnection!
+      pushedAt: String!
+      licenseInfo: License
+      description: String
+      url: String!
+      repositoryTopics(first: Int!): RepositoryTopicConnection!
+    }
+    
+    type RepositoryOwner {
+      login: String!
+    }
+    
+    type Language {
+      id: ID!
+      name: String!
+    }
+    
+    type IssueConnection {
+      totalCount: Int!
+      edges: [IssueEdge!]
+    }
+    
+    type IssueEdge {
+      node: Issue!
+    }
+    
+    type Issue {
+      id: ID!
+      title: String!
+      number: Int!
+      url: String!
+      comments: IssueComments!
+      createdAt: String!
+      labels(first: Int!): LabelConnection
+    }
+    
+    type IssueComments {
+      totalCount: Int!
+    }
+    
+    type LabelConnection {
+      edges: [LabelEdge!]
+    }
+    
+    type LabelEdge {
+      node: Label!
+    }
+    
+    type Label {
+      id: ID!
+      name: String!
+    }
+    
+    type License {
+      name: String!
+    }
+    
+    type RepositoryTopicConnection {
+      edges: [RepositoryTopicEdge!]
+    }
+    
+    type RepositoryTopicEdge {
+      node: RepositoryTopic!
+    }
+    
+    type RepositoryTopic {
+      topic: Topic!
+    }
+    
+    type Topic {
+      id: ID!
+      name: String!
+    }
+    
+    input IssueFilters {
+      labels: [String!]
+    }
+    
+    input IssueOrder {
+      field: IssueOrderField!
+      direction: OrderDirection!
+    }
+    
+    enum IssueOrderField {
+      CREATED_AT
+    }
+    
+    enum OrderDirection {
+      ASC
+      DESC
+    }
+    
+    enum IssueState {
+      OPEN
+    }
+  `);
+
+  const gqlQueryErrors = validateGraphQL(schema, parse(gqlQuery));
   if (gqlQueryErrors.length > 0) {
-    // if query is invalid, gqlQueryErrors will contain errors
     throw new Error(
       `GraphQL query is invalid:\n\t${gqlQueryErrors.map((error) => error.message).join("\n\t")}`
     );
   }
 
-  const searchResults = await octokit.graphql<Pick<Query, "search">>({ query: gqlQuery });
+  const searchResults = await octokit.graphql<GraphQLResponse>({ query: gqlQuery });
 
   // map response data to our Repository model
-  const repoData =
-    searchResults.search.edges
-      ?.filter((edge) => edge !== undefined)
-      .map((edge) => (edge as SearchResultItemEdge).node as Repository)
-      // skip repos where language is null
-      .filter((repo) => !!(repo.primaryLanguage as Language))
-      .map(
-        (repo): RepositoryModel => ({
-          id: repo.id,
-          owner: repo.owner.login,
-          name: repo.name,
-          description: repo.description === undefined ? null : repo.description,
-          url: repo.url,
-          stars: repo.stargazerCount,
-          stars_display: millify(repo.stargazerCount),
-          license: repo.licenseInfo?.name,
-          last_modified: repo.pushedAt,
-          language: {
-            id: slugify((repo.primaryLanguage as Language).name, { lower: true }),
-            display: (repo.primaryLanguage as Language).name
-          },
-          topics: repo.repositoryTopics.edges
-            ?.filter((edge) => edge !== undefined)
-            .map((edge) => (edge as RepositoryTopicEdge).node as RepositoryTopic)
-            .filter((topic) => validTopicNames.includes(topic.topic.name.toLowerCase()))
-            .map((topic) => ({
-              id: slugify(topic.topic.name, { lower: true }),
-              display: topic.topic.name
-            })),
-          issues:
-            repo.issues.edges
-              ?.filter((edge) => edge !== undefined)
-              .map((edge) => (edge as IssueEdge).node as Issue)
-              .map(
-                (issue): IssueModel => ({
-                  id: issue.id,
-                  number: issue.number,
-                  title: issue.title,
-                  url: issue.url,
-                  comments_count: issue.comments.totalCount,
-                  created_at: issue.createdAt,
-                  labels:
-                    issue.labels?.edges
-                      ?.filter((edge) => edge !== undefined)
-                      .map((edge) => (edge as LabelEdge).node as Label)
-                      .map((label) => ({
-                        id: slugify(label.name, { lower: true }),
-                        display: label.name
-                      })) ?? []
-                })
-              )
-              // sort issues by issue number
-              .sort((a, b) => a.number - b.number) ?? [],
-          has_new_issues:
-            repo.issues.edges
-              ?.filter((edge) => edge !== undefined)
-              .map((edge) => (edge as IssueEdge).node as Issue)
-              .some(
-                // Repository has "new" issues if there are any issues created in the last week
-                (issue) => dayjs().diff(dayjs(issue.createdAt), "day") <= 7
-              ) ?? false
-        })
-      ) ?? [];
+  const repoData = searchResults.search.edges
+    .map(({ node: repo }) => {
+      if (!repo.primaryLanguage) return null;
+      
+      return {
+        id: repo.id,
+        owner: repo.owner.login,
+        name: repo.name,
+        description: repo.description ?? null,
+        url: repo.url,
+        stars: repo.stargazerCount,
+        stars_display: millify(repo.stargazerCount),
+        license: repo.licenseInfo?.name,
+        last_modified: repo.pushedAt,
+        language: {
+          id: slugify(repo.primaryLanguage.name.toLowerCase()),
+          display: repo.primaryLanguage.name
+        },
+        topics: repo.repositoryTopics.edges
+          ?.map((edge) => edge.node)
+          .filter((topic) => validTopicNames.includes(topic.topic.name.toLowerCase()))
+          .map((topic) => ({
+            id: slugify(topic.topic.name.toLowerCase()),
+            display: topic.topic.name
+          })) ?? [],
+        issues: repo.issues.edges
+          ?.map((edge) => edge.node)
+          .map((issue) => ({
+            id: issue.id,
+            number: issue.number,
+            title: issue.title,
+            url: issue.url,
+            comments_count: issue.comments.totalCount,
+            created_at: issue.createdAt,
+            labels: issue.labels?.edges
+              ?.map((edge) => edge.node)
+              .map((label) => ({
+                id: slugify(label.name.toLowerCase()),
+                display: label.name
+              })) ?? []
+          }))
+          .sort((a, b) => a.number - b.number) ?? [],
+        has_new_issues: repo.issues.edges
+          ?.map((edge) => edge.node)
+          .some((issue) => dayjs().diff(dayjs(issue.createdAt), "day") <= 7) ?? false
+      } as RepositoryModel;
+    })
+    .filter((repo): repo is RepositoryModel => repo !== null);
 
-  // unfortunately, there's no way to filter repositories by number of issues in the search query
-  // filter out repos with less than 3 open issues
   return repoData;
 };
 
 [...new Set(happycommits.repositories)]
   .slice(0, process.env.NODE_ENV === "development" ? 200 : happycommits.repositories.length)
   .reduce((repoChunks: string[][], repo: string, index) => {
-    // Split repositories into smaller chunks, this helps prevent request timeouts
     const chunkIndex = Math.floor(index / REPOS_PER_REQUEST);
     if (!repoChunks[chunkIndex]) {
       repoChunks[chunkIndex] = [];
@@ -259,55 +422,44 @@ const getRepositories = async (
       );
       const repositories = await getRepositories(chunk, happycommits.labels);
 
-      // wait 1s between requests
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       return [...repos, ...repositories];
     });
   }, Promise.resolve([]))
   .then((repoData) => {
-    // Get a list of distinct languages with counts for use with filtering in the UI
     const filterLanguages = Object.values(
       repoData.reduce((arr: { [key: string]: CountableTagModel }, repo: RepositoryModel) => {
-        // group languages by id and count them
         const { id, display } = repo.language;
         if (arr[id] === undefined) arr[id] = { id, display, count: 1 };
         else arr[id].count++;
         return arr;
       }, {} as { [key: string]: CountableTagModel })
     )
-      // Ignore language with less than 3 repositories
       .filter((language) => language.count >= 1)
-      // Sort alphabetically
       .sort((a, b) => a.display.localeCompare(b.display));
 
-    // Get a list of distinct topics with counts for use with filtering in the UI
     const filterTopics = Object.values(
       repoData
         .filter((repo) => repo.topics !== undefined)
         .flatMap((repo) => repo.topics as TagModel[])
         .reduce((arr: { [key: string]: CountableTagModel }, topic: TagModel) => {
-          // group topics by id and count them
           const { id, display } = topic;
           if (arr[id] === undefined) arr[id] = { id, display, count: 1 };
           else arr[id].count++;
           return arr;
         }, {} as { [key: string]: CountableTagModel })
     )
-      // Ignore topics with less than 3 repositories
       .filter((topic) => topic.count >= 1)
-      // Sort by count desc
       .sort((a, b) => b.count - a.count);
 
     return {
-      // Sort the repositories randomly so that the list isn't always the same
       repositories: repoData.sort(() => Math.random() - 0.5),
       languages: filterLanguages,
       topics: filterTopics
     };
   })
   .then((data) => {
-    // Write generated data to file for use in the app
     fs.writeFileSync("./generated.json", JSON.stringify(data));
     console.log("Generated generated.json");
     
@@ -319,7 +471,6 @@ const getRepositories = async (
     fs.writeFileSync("./topics.json", JSON.stringify(topics, null, 2));
     console.log("Generated topics.json");
     
-    // Build sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
