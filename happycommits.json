@@ -240,7 +240,8 @@
     "vrapeutic/Rodja-webXR",
     "WFP-VAM/prism-app",
     "WorldHealthOrganization/godata",
-    "Zenysis/Harmony"
+    "Zenysis/Harmony",
+    "JabRef/jabref"
   ],
   "labels": [
     "good first issue",
