@@ -1,4 +1,4 @@
-import Select, { MultiValue } from "react-select";
+import Select from "react-select";
 import { ColorStyles } from "./ColorStyles";
 
 type LanguageFilterProps = {
@@ -16,7 +16,7 @@ export const LanguageFilter = ({ setSelectedLanguages, languageOptions }: Langua
           isMulti
           closeMenuOnSelect={false}
           className=""
-          onChange={(selectedOptions: MultiValue<{ value: string; label: string }>) =>
+          onChange={(selectedOptions) =>
             setSelectedLanguages(selectedOptions.map((option) => option.value))
           }
           options={languageOptions}
