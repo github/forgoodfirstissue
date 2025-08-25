@@ -243,6 +243,7 @@
     "WFP-VAM/prism-app",
     "WorldHealthOrganization/godata",
     "Zenysis/Harmony"
+    "datakind/Data-Observation-Toolkit"
   ],
   "labels": [
     "good first issue",
