@@ -243,7 +243,9 @@
     "WFP-VAM/prism-app",
     "WorldHealthOrganization/godata",
     "Zenysis/Harmony",
-    "datakind/Data-Observation-Toolkit"
+    "datakind/Data-Observation-Toolkit",
+    "saadettan0606-sudo/benimadimcmil"
+    
   ],
   "labels": [
     "good first issue",
