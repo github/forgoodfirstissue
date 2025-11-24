@@ -2,7 +2,7 @@ import { Octokit } from "@octokit/core";
 import { retry } from "@octokit/plugin-retry";
 import { throttling } from "@octokit/plugin-throttling";
 import { RequestOptions } from "@octokit/types";
-import { buildSchema, GraphQLSchema, parse, validate as validateGraphQL } from "graphql";
+import { buildSchema, parse, validate as validateGraphQL } from "graphql";
 import dayjs from "dayjs";
 import fs from "fs";
 import millify from "millify";
@@ -11,7 +11,6 @@ import slugify from "slugify";
 import happycommits from "./happycommits.json";
 import {
   CountableTag as CountableTagModel,
-  Issue as IssueModel,
   Repository as RepositoryModel,
   Tag as TagModel
 } from "./types";
@@ -497,6 +496,6 @@ const getRepositories = async (
   .finally(() => {
     console.log("Data generation complete.");
   })
-  .catch((error: any) => {
+  .catch((error: unknown) => {
     console.error(error);
   });
