@@ -2,6 +2,7 @@ import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import js from "@eslint/js";
 import globals from "globals";
+import prettierConfig from "eslint-config-prettier";
 
 export default [
     js.configs.recommended,
@@ -27,6 +28,7 @@ export default [
         },
         rules: {
             ...typescriptEslint.configs.recommended.rules,
+            ...prettierConfig.rules,
             "@typescript-eslint/no-explicit-any": "warn",
             "@typescript-eslint/no-unused-vars": ["error", {
                 "argsIgnorePattern": "^_",
