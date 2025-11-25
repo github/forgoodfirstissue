@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { fontFamily } = require('tailwindcss/defaultTheme')
+ 
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 
 /** @type {import('tailwindcss').Config} */
@@ -14,7 +14,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', ...fontFamily.sans],
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
       },
     },
     colors: {
@@ -23,7 +23,6 @@ module.exports = {
       secondary: '#67bd41',
       juniper: '#67bd41',
       light_juniper: '#83f251',
-      slate: '#52575c',
       honey: '#f6d87c',
       vanilla: {
         100: '#ffffff',
@@ -92,3 +91,5 @@ module.exports = {
   },
   corePlugins: {}
 }
+
+export default module.exports;
