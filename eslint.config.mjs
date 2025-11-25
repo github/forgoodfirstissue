@@ -2,6 +2,7 @@ import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import js from "@eslint/js";
 import globals from "globals";
+import eslintPluginNext from "@next/eslint-plugin-next";
 import prettierConfig from "eslint-config-prettier";
 
 export default [
@@ -10,6 +11,7 @@ export default [
         files: ["**/*.{js,jsx,ts,tsx}"],
         plugins: {
             "@typescript-eslint": typescriptEslint,
+            "@next/next": eslintPluginNext,
         },
         languageOptions: {
             parser: tsParser,
@@ -28,6 +30,8 @@ export default [
         },
         rules: {
             ...typescriptEslint.configs.recommended.rules,
+            ...eslintPluginNext.configs.recommended.rules,
+            ...eslintPluginNext.configs["core-web-vitals"].rules,
             ...prettierConfig.rules,
             "@typescript-eslint/no-explicit-any": "warn",
             "@typescript-eslint/no-unused-vars": ["error", {
