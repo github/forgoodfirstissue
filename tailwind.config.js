@@ -23,7 +23,6 @@ module.exports = {
       secondary: '#67bd41',
       juniper: '#67bd41',
       light_juniper: '#83f251',
-      slate: '#52575c',
       honey: '#f6d87c',
       vanilla: {
         100: '#ffffff',

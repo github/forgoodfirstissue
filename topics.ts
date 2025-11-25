@@ -1,6 +1,6 @@
-type IndexedTopics = Record<string, string>;
+type IndexedTopicsType = Record<string, string>;
 
-export const IndexedTopics: IndexedTopics = {
+export const IndexedTopics: IndexedTopicsType = {
   "sdg-1": "SDG-1 - No Poverty",
   "sdg-2": "SDG-2 - Zero Hunger",
   "sdg-3": "SDG-3 - Good Health And Well-Being",
