@@ -36,7 +36,6 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
       return () => clearTimeout(timer);
     }
   }, [isIssueOpen]);
-  console.log(repository.name, repository.last_modified, lastModified);
 
   return (
     <div className="repo-item">
