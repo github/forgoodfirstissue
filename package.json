@@ -33,7 +33,7 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
-    "@octokit/core": "^5.0.2",
+    "@octokit/core": "^5.2.2",
     "@octokit/graphql-schema": "^15.26.0",
     "@octokit/plugin-retry": "^5.0.5",
     "@octokit/plugin-throttling": "^8.1.3",
