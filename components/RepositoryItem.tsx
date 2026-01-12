@@ -12,18 +12,19 @@ type RepositoryItemProps = {
   repository: Repository;
 };
 
+dayjs.extend(relativeTime);
+const useLastModified = (date: string) => {
+  const [lastModified, setLastModified] = useState("");
+
+  useEffect(() => setLastModified(dayjs(date).fromNow()), [date]);
+
+  return lastModified;
+};
+
 export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
   const [isIssueOpen, setIsIssueOpen] = useState(false);
   const [isIssuesListVisible, setIsIssuesListVisible] = useState(false);
 
-  dayjs.extend(relativeTime);
-  const useLastModified = (date: string) => {
-    const [lastModified, setLastModified] = useState("");
-
-    useEffect(() => setLastModified(dayjs(date).fromNow()), [date]);
-
-    return lastModified;
-  };
   const lastModified = useLastModified(repository.last_modified);
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
             />
           </div>
         </div>
-        <div className={`repo-item__issues-warper ${isIssueOpen ? 'open' : ''}`}>
+        <div className={`repo-item__issues-warper ${isIssueOpen ? "open" : ""}`}>
           {isIssuesListVisible && <IssuesList issues={repository.issues} />}
         </div>
       </div>
