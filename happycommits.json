@@ -245,7 +245,8 @@
     "WFP-VAM/prism-app",
     "WorldHealthOrganization/godata",
     "Zenysis/Harmony",
-    "datakind/Data-Observation-Toolkit"
+    "datakind/Data-Observation-Toolkit",
+    "Deepak-J0shi/Internship-Extraction-Chatbot"
   ],
   "labels": [
     "good first issue",
