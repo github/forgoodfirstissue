@@ -81,6 +81,10 @@
 
   .socials {
     width: 90%;
+    color: #959da5;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8px 0;
 
     @media (min-width: 800px) {
       display: flex;
@@ -88,11 +92,6 @@
       align-items: center;
       flex-direction: row-reverse;
     }
-
-    color: #959da5;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 8px 0;
 
     .socials__left {
       width: 100%;
