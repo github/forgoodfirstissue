@@ -14,6 +14,7 @@ export const Header = () => {
               width={144}
               height={32}
               alt="For Good First Issue logo"
+              style={{ height: "auto" }}
             />
           </Link>
           <Button

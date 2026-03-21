@@ -1,3 +1,4 @@
+import { useId } from "react";
 import Select from "react-select";
 
 type SDGFilterProps = {
@@ -6,11 +7,13 @@ type SDGFilterProps = {
 };
 
 export const SDGFilter = ({ setSelectedTopics, topicOptions }: SDGFilterProps) => {
+  const instanceId = useId();
   return (
     <>
       <div>
         <label className="label">Sustainable Development Goal (SDG)</label>
         <Select
+          instanceId={instanceId}
           isMulti
           className=""
           options={topicOptions}
