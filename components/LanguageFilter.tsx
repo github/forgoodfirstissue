@@ -10,7 +10,17 @@ export const LanguageFilter = ({ setSelectedLanguages, languageOptions }: Langua
     <>
       <div>
         <label className="label">Language</label>
-        <Select isMulti closeMenuOnSelect={false} className="" onChange={(selectedOptions) => setSelectedLanguages(selectedOptions.map((option) => option.value))} options={languageOptions} classNamePrefix="select" />
+        <Select
+          instanceId="language-filter"
+          isMulti
+          closeMenuOnSelect={false}
+          className=""
+          onChange={(selectedOptions) =>
+            setSelectedLanguages(selectedOptions.map((option) => option.value))
+          }
+          options={languageOptions}
+          classNamePrefix="select"
+        />
       </div>
     </>
 
