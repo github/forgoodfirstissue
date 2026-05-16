@@ -24,7 +24,6 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
     } else {
       // Delay unmounting to allow close animation to complete
       const timer = setTimeout(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsIssuesListVisible(false);
       }, 300);
       return () => clearTimeout(timer);
