@@ -19,7 +19,6 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
 
   useEffect(() => {
     if (isIssueOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsIssuesListVisible(true);
     } else {
       // Delay unmounting to allow close animation to complete
