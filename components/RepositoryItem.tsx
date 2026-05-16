@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useEffect, useState } from "react";
 
+import { useLastModified } from "../hooks/useLastModified";
 import { Repository } from "../types";
 import { IssuesList } from "./IssueList";
 import { RepositoryDescription } from "./RepositoryDescription";
@@ -16,22 +15,18 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
   const [isIssueOpen, setIsIssueOpen] = useState(false);
   const [isIssuesListVisible, setIsIssuesListVisible] = useState(false);
 
-  dayjs.extend(relativeTime);
-  const useLastModified = (date: string) => {
-    const [lastModified, setLastModified] = useState("");
-
-    useEffect(() => setLastModified(dayjs(date).fromNow()), [date]);
-
-    return lastModified;
-  };
   const lastModified = useLastModified(repository.last_modified);
 
   useEffect(() => {
     if (isIssueOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsIssuesListVisible(true);
     } else {
       // Delay unmounting to allow close animation to complete
-      const timer = setTimeout(() => setIsIssuesListVisible(false), 300);
+      const timer = setTimeout(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setIsIssuesListVisible(false);
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isIssueOpen]);
