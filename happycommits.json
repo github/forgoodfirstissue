@@ -166,7 +166,6 @@
     "openimis/openimis-dist_dkr",
     "openmrs/openmrs-core",
     "openmrs/openmrs-contrib-android-client",
-    "opencrvs/opencrvs-core",
     "openkfw/TruBudget",
     "OpenSPP/openspp-modules",
     "openspp-project/openspp-registry",
@@ -244,8 +243,7 @@
     "vrapeutic/Rodja-webXR",
     "WFP-VAM/prism-app",
     "WorldHealthOrganization/godata",
-    "Zenysis/Harmony",
-    "datakind/Data-Observation-Toolkit"
+    "Zenysis/Harmony"
   ],
   "labels": [
     "good first issue",
