@@ -95,6 +95,14 @@ slugify.extend({
   "+": "plus"
 });
 
+const uniqueByRepositoryKey = (repositories: RepositoryModel[]) =>
+  Array.from(
+    repositories.reduce((map, repository) => {
+      map.set(`${repository.owner}/${repository.name}`, repository);
+      return map;
+    }, new Map<string, RepositoryModel>()).values()
+  );
+
 // Setup Octokit (GitHub API client)
 const MyOctokit = Octokit.plugin(throttling, retry);
 const octokit = new MyOctokit({
@@ -453,7 +461,7 @@ const getRepositories = async (
       .sort((a, b) => b.count - a.count);
 
     return {
-      repositories: repoData.sort(() => Math.random() - 0.5),
+      repositories: uniqueByRepositoryKey(repoData).sort(() => Math.random() - 0.5),
       languages: filterLanguages,
       topics: filterTopics
     };
