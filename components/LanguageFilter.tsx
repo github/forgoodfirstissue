@@ -23,6 +23,5 @@ export const LanguageFilter = ({ setSelectedLanguages, languageOptions }: Langua
         />
       </div>
     </>
-
   );
 };

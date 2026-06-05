@@ -4,7 +4,7 @@ type FilterProps = {
   setFilter: (filter: string) => void;
 };
 
-export const HappyCommitsInfo = ({filter, setFilter}: FilterProps) => {
+export const HappyCommitsInfo = ({ filter, setFilter }: FilterProps) => {
   return (
     <div className="search-wrap">
       <GeneralFilter

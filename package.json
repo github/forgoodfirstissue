@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "export": "next export",
     "prepare": "husky",
-    "prebuild": "ts-node generate.ts"
+    "prebuild": "ts-node generate.ts && ts-node generate-organizations.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",

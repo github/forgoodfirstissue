@@ -9,8 +9,7 @@ import { Repository } from "../types";
 import { LanguageFilter } from "./LanguageFilter";
 import { RepositoryItem } from "./RepositoryItem";
 import { SDGFilter } from "./SDGFilter";
-import {Grid, Stack} from '@primer/react-brand';
-
+import { Grid, Stack } from "@primer/react-brand";
 
 type RepositoryListProps = {
   repositories: Repository[];
@@ -28,7 +27,6 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
   const [items, setItems] = useState(itemsPerScroll);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-
 
   const filteredRepositories = repositories.filter((repository) => {
     const languageFilter =
@@ -67,7 +65,7 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
     <main className="repoWrap">
       <div className="grid-wrap">
         <Grid>
-          <Grid.Column span={{xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3}}>
+          <Grid.Column span={{ xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3 }}>
             <Stack className="stack">
               <LanguageFilter
                 setSelectedLanguages={setSelectedLanguages}
@@ -76,17 +74,20 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
               <SDGFilter setSelectedTopics={setSelectedTopics} topicOptions={topicOptions} />
             </Stack>
           </Grid.Column>
-          <Grid.Column className="repo-list-wrap" span={{xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9}}>
-              <InfiniteScroll
-                dataLength={items}
-                next={loadMoreItems}
-                hasMore={hasMoreItems}
-                loader={<Loader />}
-              >
-                {filteredRepositories.slice(0, items).map((repository) => (
-                  <RepositoryItem key={repository.id} repository={repository} />
-                ))}
-              </InfiniteScroll>
+          <Grid.Column
+            className="repo-list-wrap"
+            span={{ xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9 }}
+          >
+            <InfiniteScroll
+              dataLength={items}
+              next={loadMoreItems}
+              hasMore={hasMoreItems}
+              loader={<Loader />}
+            >
+              {filteredRepositories.slice(0, items).map((repository) => (
+                <RepositoryItem key={repository.id} repository={repository} />
+              ))}
+            </InfiniteScroll>
           </Grid.Column>
         </Grid>
       </div>
