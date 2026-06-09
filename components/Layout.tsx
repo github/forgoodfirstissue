@@ -7,9 +7,7 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => (
   <div>
     <main>
-      <section>
-        {children}
-      </section>
+      <section>{children}</section>
     </main>
   </div>
 );

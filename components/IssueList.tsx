@@ -14,8 +14,8 @@ export const IssuesList = ({ issues }: IssueListProps) => {
         <li>
           This project does not appear to have any issues marked Help Wanted or Good First Issue. If
           this project speaks to you, consider seeing if there are other ways to help contribute!
-          You can find more information on the project&apos;s GitHub page. It is also possible that they
-          are not using issue labels or GitHub issues to track their work.
+          You can find more information on the project&apos;s GitHub page. It is also possible that
+          they are not using issue labels or GitHub issues to track their work.
         </li>
       )}
     </ol>
