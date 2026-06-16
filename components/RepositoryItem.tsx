@@ -14,7 +14,7 @@ type RepositoryItemProps = {
 
 dayjs.extend(relativeTime);
 const useLastModified = (date: string) => {
-  const [lastModified, setLastModified] = useState(() => daysjs(date).fromNow());
+  const [lastModified, setLastModified] = useState("");
 
   useEffect(() => { setLastModified(dayjs(date).fromNow()); }, [date]);
 
