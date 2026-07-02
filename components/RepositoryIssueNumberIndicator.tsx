@@ -1,5 +1,5 @@
-import { FaChevronDown } from 'react-icons/fa';
-import { FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
 
 type RepositoryIssueNumberIndicatorProps = {
   isIssueOpen: boolean;
@@ -8,9 +8,5 @@ type RepositoryIssueNumberIndicatorProps = {
 export const RepositoryIssueNumberIndicator = ({
   isIssueOpen
 }: RepositoryIssueNumberIndicatorProps) => {
-  return (
-    <span>
-      {isIssueOpen ? <FaChevronUp /> : <FaChevronDown />}
-    </span>
-  );
+  return <span>{isIssueOpen ? <FaChevronUp /> : <FaChevronDown />}</span>;
 };

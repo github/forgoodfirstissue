@@ -25,24 +25,21 @@ export const RepositoryMetadata = ({
       </div>
 
       <div>
-        Language:{" "}
-        <span>
-          {repositoryLang}
-        </span>
+        Language: <span>{repositoryLang}</span>
       </div>
 
-      {repositoryTopics && repositoryTopics.length > 0 && <div>
-        Label:
-        <span>
-          {repositoryTopics && repositoryTopics.map(topic => topic.display).join(', ')}
-        </span>
-      </div>}
+      {repositoryTopics && repositoryTopics.length > 0 && (
+        <div>
+          Label:
+          <span>
+            {repositoryTopics && repositoryTopics.map((topic) => topic.display).join(", ")}
+          </span>
+        </div>
+      )}
 
       <div>
         Last activity:
-        <span>
-          {lastModified}
-        </span>
+        <span>{lastModified}</span>
       </div>
     </div>
   );

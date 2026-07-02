@@ -30,7 +30,6 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
     if (isIssueOpen) {
       setIsIssuesListVisible(true);
     } else {
-      // Delay unmounting to allow close animation to complete
       const timer = setTimeout(() => setIsIssuesListVisible(false), 300);
       return () => clearTimeout(timer);
     }
@@ -61,7 +60,7 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
             />
           </div>
         </div>
-        <div className={`repo-item__issues-warper ${isIssueOpen ? 'open' : ''}`}>
+        <div className={`repo-item__issues-warper ${isIssueOpen ? "open" : ""}`}>
           {isIssuesListVisible && <IssuesList issues={repository.issues} />}
         </div>
       </div>

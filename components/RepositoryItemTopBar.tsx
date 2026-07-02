@@ -26,19 +26,13 @@ export const RepositoryItemTopBar = ({
         title={`Open ${repositoryOwner}/${repositoryName} on GitHub`}
       >
         <h3>
-          <div className="repo-item__owner">
-            {repositoryOwner}
-          </div>
+          <div className="repo-item__owner">{repositoryOwner}</div>
           <span>&nbsp;/&nbsp;</span>
-          <div className="repo-item__name">
-            {repositoryName}
-          </div>
+          <div className="repo-item__name">{repositoryName}</div>
         </h3>
       </a>
 
-      <RepositoryIssueNumberIndicator
-        isIssueOpen={isIssueOpen}
-      />
+      <RepositoryIssueNumberIndicator isIssueOpen={isIssueOpen} />
     </div>
   );
 };

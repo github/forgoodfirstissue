@@ -5,7 +5,7 @@ type FilterProps = {
   setFilter: (filter: string) => void;
 };
 
-export const HappyContainer = ({filter, setFilter}: FilterProps) => {
+export const HappyContainer = ({ filter, setFilter }: FilterProps) => {
   return (
     <>
       <HappyCommitsInfo filter={filter} setFilter={setFilter} />

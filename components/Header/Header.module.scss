@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    grid-gap: 36px;
+    gap: 36px;
     max-width: 1440px;
     width: 90%;
     margin: 0 auto;
@@ -20,7 +20,7 @@
 
     a:not(.homeLink) {
       padding: 8px 12px;
-      grid-gap: 4px;
+      gap: 4px;
     }
 
     .btnText {
@@ -29,4 +29,34 @@
       white-space: nowrap;
     }
   }
+}
+
+.pageTabs {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex: 1;
+  height: 72px;
+}
+
+.pageTab {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.pageTabActive {
+  color: #ffffff;
+  border-bottom-color: #67bd41;
 }

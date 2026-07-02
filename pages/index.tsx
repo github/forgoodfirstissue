@@ -11,24 +11,21 @@ import { HappyContainer } from "../components/HappyContainer";
 import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
 
-import {Grid, Heading, Stack} from '@primer/react-brand';
-
+import { Grid, Heading, Stack } from "@primer/react-brand";
 
 export default function Home() {
   const { repositories } = useAppData();
   const [filter, setFilter] = useState("");
 
-
   const sortedRepositories = repositories.sort((a, b) => {
     if (a.issues > b.issues) {
-      return -1; // a comes first
+      return -1;
     } else if (a.issues < b.issues) {
-      return 1; // b comes first
+      return 1;
     } else {
-      return 0; // a and b are equal
+      return 0;
     }
   });
-
 
   return (
     <>
@@ -43,7 +40,7 @@ export default function Home() {
       <div className="section-vertical">
         <div className="grid-wrap grid-wrap--first">
           <Grid>
-            <Grid.Column span={{xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3}}>
+            <Grid.Column span={{ xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3 }}>
               <Stack className="stack">
                 <Heading size="6">Find a project</Heading>
                 <HappyContainer filter={filter} setFilter={setFilter} />
@@ -53,7 +50,6 @@ export default function Home() {
         </div>
 
         <RepositoryList repositories={sortedRepositories} filter={filter} />
-
       </div>
 
       <Footer />

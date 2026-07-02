@@ -15,7 +15,6 @@ import {
   Tag as TagModel
 } from "./types";
 
-// Define interfaces for GitHub GraphQL types
 interface GithubRepository {
   id: string;
   name: string;
@@ -82,20 +81,34 @@ interface GraphQLResponse {
   };
 }
 
-/** Number of repositories to query per request (max 100, but set to a smaller number to prevent timeouts) */
 const REPOS_PER_REQUEST = 25;
-/** Maximum number of issues to retrieve per repository */
 const MAX_ISSUES = 10;
 
-const validTopicNames = ['sdg-1', 'sdg-2', 'sdg-3', 'sdg-4', 'sdg-5', 'sdg-6', 'sdg-7', 'sdg-8', 'sdg-9', 'sdg-10', 'sdg-11', 'sdg-12', 'sdg-13', 'sdg-14', 'sdg-15', 'sdg-16', 'sdg-17'];
+const validTopicNames = [
+  "sdg-1",
+  "sdg-2",
+  "sdg-3",
+  "sdg-4",
+  "sdg-5",
+  "sdg-6",
+  "sdg-7",
+  "sdg-8",
+  "sdg-9",
+  "sdg-10",
+  "sdg-11",
+  "sdg-12",
+  "sdg-13",
+  "sdg-14",
+  "sdg-15",
+  "sdg-16",
+  "sdg-17"
+];
 
-// symbols to replace with slugify
 slugify.extend({
   "#": "sharp",
   "+": "plus"
 });
 
-// Setup Octokit (GitHub API client)
 const MyOctokit = Octokit.plugin(throttling, retry);
 const octokit = new MyOctokit({
   auth: process.env.GH_PERSONAL_ACCESS_TOKEN,
@@ -105,7 +118,6 @@ const octokit = new MyOctokit({
       octokit.log.warn(`Request quota exhausted for request ${method} ${url}`);
 
       if (retryCount < 1) {
-        // only retries once
         octokit.log.info(`Retrying after ${retryAfter} seconds!`);
         return true;
       }
@@ -120,7 +132,6 @@ const octokit = new MyOctokit({
       octokit.log.warn(`SecondaryRateLimit detected for request ${method} ${url}`);
 
       if (retryCount < 2) {
-        // retries twice
         octokit.log.warn(`Retrying after ${retryAfter} seconds!`);
         return true;
       }
@@ -128,9 +139,6 @@ const octokit = new MyOctokit({
   }
 });
 
-/**
- * Retrieve a list of repositories by calling GitHub GraphQL API.
- */
 const getRepositories = async (
   repositories: string[],
   labels: string[]
@@ -217,7 +225,6 @@ const getRepositories = async (
   }
   `;
 
-  // Create schema for validation
   const schema = buildSchema(`
     type Query {
       search(query: String!, type: SearchType!, first: Int!): SearchResultItemConnection!
@@ -351,11 +358,10 @@ const getRepositories = async (
 
   const searchResults = await octokit.graphql<GraphQLResponse>({ query: gqlQuery });
 
-  // map response data to our Repository model
   const repoData = searchResults.search.edges
     .map(({ node: repo }) => {
       if (!repo.primaryLanguage) return null;
-      
+
       return {
         id: repo.id,
         owner: repo.owner.login,
@@ -370,33 +376,37 @@ const getRepositories = async (
           id: slugify(repo.primaryLanguage.name.toLowerCase()),
           display: repo.primaryLanguage.name
         },
-        topics: repo.repositoryTopics.edges
-          ?.map((edge) => edge.node)
-          .filter((topic) => validTopicNames.includes(topic.topic.name.toLowerCase()))
-          .map((topic) => ({
-            id: slugify(topic.topic.name.toLowerCase()),
-            display: topic.topic.name
-          })) ?? [],
-        issues: repo.issues.edges
-          ?.map((edge) => edge.node)
-          .map((issue) => ({
-            id: issue.id,
-            number: issue.number,
-            title: issue.title,
-            url: issue.url,
-            comments_count: issue.comments.totalCount,
-            created_at: issue.createdAt,
-            labels: issue.labels?.edges
-              ?.map((edge) => edge.node)
-              .map((label) => ({
-                id: slugify(label.name.toLowerCase()),
-                display: label.name
-              })) ?? []
-          }))
-          .sort((a, b) => a.number - b.number) ?? [],
-        has_new_issues: repo.issues.edges
-          ?.map((edge) => edge.node)
-          .some((issue) => dayjs().diff(dayjs(issue.createdAt), "day") <= 7) ?? false
+        topics:
+          repo.repositoryTopics.edges
+            ?.map((edge) => edge.node)
+            .filter((topic) => validTopicNames.includes(topic.topic.name.toLowerCase()))
+            .map((topic) => ({
+              id: slugify(topic.topic.name.toLowerCase()),
+              display: topic.topic.name
+            })) ?? [],
+        issues:
+          repo.issues.edges
+            ?.map((edge) => edge.node)
+            .map((issue) => ({
+              id: issue.id,
+              number: issue.number,
+              title: issue.title,
+              url: issue.url,
+              comments_count: issue.comments.totalCount,
+              created_at: issue.createdAt,
+              labels:
+                issue.labels?.edges
+                  ?.map((edge) => edge.node)
+                  .map((label) => ({
+                    id: slugify(label.name.toLowerCase()),
+                    display: label.name
+                  })) ?? []
+            }))
+            .sort((a, b) => a.number - b.number) ?? [],
+        has_new_issues:
+          repo.issues.edges
+            ?.map((edge) => edge.node)
+            .some((issue) => dayjs().diff(dayjs(issue.createdAt), "day") <= 7) ?? false
       } as RepositoryModel;
     })
     .filter((repo): repo is RepositoryModel => repo !== null);
@@ -428,12 +438,15 @@ const getRepositories = async (
   }, Promise.resolve([]))
   .then((repoData) => {
     const filterLanguages = Object.values(
-      repoData.reduce((arr: { [key: string]: CountableTagModel }, repo: RepositoryModel) => {
-        const { id, display } = repo.language;
-        if (arr[id] === undefined) arr[id] = { id, display, count: 1 };
-        else arr[id].count++;
-        return arr;
-      }, {} as { [key: string]: CountableTagModel })
+      repoData.reduce(
+        (arr: { [key: string]: CountableTagModel }, repo: RepositoryModel) => {
+          const { id, display } = repo.language;
+          if (arr[id] === undefined) arr[id] = { id, display, count: 1 };
+          else arr[id].count++;
+          return arr;
+        },
+        {} as { [key: string]: CountableTagModel }
+      )
     )
       .filter((language) => language.count >= 1)
       .sort((a, b) => a.display.localeCompare(b.display));
@@ -442,12 +455,15 @@ const getRepositories = async (
       repoData
         .filter((repo) => repo.topics !== undefined)
         .flatMap((repo) => repo.topics as TagModel[])
-        .reduce((arr: { [key: string]: CountableTagModel }, topic: TagModel) => {
-          const { id, display } = topic;
-          if (arr[id] === undefined) arr[id] = { id, display, count: 1 };
-          else arr[id].count++;
-          return arr;
-        }, {} as { [key: string]: CountableTagModel })
+        .reduce(
+          (arr: { [key: string]: CountableTagModel }, topic: TagModel) => {
+            const { id, display } = topic;
+            if (arr[id] === undefined) arr[id] = { id, display, count: 1 };
+            else arr[id].count++;
+            return arr;
+          },
+          {} as { [key: string]: CountableTagModel }
+        )
     )
       .filter((topic) => topic.count >= 1)
       .sort((a, b) => b.count - a.count);
@@ -461,7 +477,7 @@ const getRepositories = async (
   .then((data) => {
     fs.writeFileSync("./generated.json", JSON.stringify(data));
     console.log("Generated generated.json");
-    
+
     const topics = data.repositories
       .filter((repo) => repo.topics !== undefined)
       .flatMap((repo) => repo.topics as TagModel[])
@@ -469,7 +485,7 @@ const getRepositories = async (
 
     fs.writeFileSync("./topics.json", JSON.stringify(topics, null, 2));
     console.log("Generated topics.json");
-    
+
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
