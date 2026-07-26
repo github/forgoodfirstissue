@@ -1,5 +1,6 @@
 {
   "repositories": [
+   
     "a2i-dpg/ekShop",
     "a2i-dpg/skills-and-certification",
     "Aam-Digital/ndb-core",
@@ -247,9 +248,11 @@
     "Zenysis/Harmony",
     "datakind/Data-Observation-Toolkit"
   ],
+  
   "labels": [
     "good first issue",
     "Help Wanted",
-    "help wanted"
+    "help wanted",
+    "Testing"
   ]
 }
