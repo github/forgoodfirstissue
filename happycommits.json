@@ -166,7 +166,6 @@
     "openimis/openimis-dist_dkr",
     "openmrs/openmrs-core",
     "openmrs/openmrs-contrib-android-client",
-    "opencrvs/opencrvs-core",
     "openkfw/TruBudget",
     "OpenSPP/openspp-modules",
     "openspp-project/openspp-registry",
@@ -189,6 +188,7 @@
     "primeroIMS/primero",
     "project-sunbird/sunbird-learning-platform",
     "pryv/open-pryv.io",
+    "PublicLab/plots2",
     "qlt2020/doskaz",
     "rapidpro/rapidpro",
     "RentadroneCL/Precision_Agriculture",
@@ -198,7 +198,7 @@
     "reconverse/outbreaks",
     "reconverse/reportfactory",
     "reconverse/trending",
-    "reconverse/trendeval/",
+    "reconverse/trendeval",
     "rubyforgood/casa",
     "rubyforgood/human-essentials",
     "rubyforgood/pet-rescue",
@@ -244,8 +244,7 @@
     "vrapeutic/Rodja-webXR",
     "WFP-VAM/prism-app",
     "WorldHealthOrganization/godata",
-    "Zenysis/Harmony",
-    "datakind/Data-Observation-Toolkit"
+    "Zenysis/Harmony"
   ],
   "labels": [
     "good first issue",
