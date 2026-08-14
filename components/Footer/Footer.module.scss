@@ -158,6 +158,10 @@
     background: var(--color-accent-emphasis);
     color: #fff !important;
   }
+  a:hover {
+    background: var(--color-accent-emphasis-hover);
+   
+  }
 }
 p.textWhite {
   color: #fff !important;
