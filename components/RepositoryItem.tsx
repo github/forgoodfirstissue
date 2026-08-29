@@ -12,18 +12,19 @@ type RepositoryItemProps = {
   repository: Repository;
 };
 
+dayjs.extend(relativeTime);
+const useLastModified = (date: string) => {
+  const [lastModified, setLastModified] = useState("");
+
+  useEffect(() => { setLastModified(dayjs(date).fromNow()); }, [date]);
+
+  return lastModified;
+};
+
 export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
   const [isIssueOpen, setIsIssueOpen] = useState(false);
   const [isIssuesListVisible, setIsIssuesListVisible] = useState(false);
 
-  dayjs.extend(relativeTime);
-  const useLastModified = (date: string) => {
-    const [lastModified, setLastModified] = useState("");
-
-    useEffect(() => setLastModified(dayjs(date).fromNow()), [date]);
-
-    return lastModified;
-  };
   const lastModified = useLastModified(repository.last_modified);
 
   useEffect(() => {
