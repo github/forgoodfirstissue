@@ -8,6 +8,7 @@ import { LanguageFilter } from "./LanguageFilter";
 import { OrganizationItem } from "./OrganizationItem";
 import { Grid, Stack } from "@primer/react-brand";
 import { GeneralFilter } from "./GeneralFilter";
+import { EmptyState } from "./EmptyState";
 
 type OrganizationListProps = {
   organizations: Organization[];
@@ -72,9 +73,13 @@ export const OrganizationList = ({ organizations }: OrganizationListProps) => {
               hasMore={hasMoreItems}
               loader={<Loader />}
             >
-              {filteredOrganizations.slice(0, items).map((org) => (
-                <OrganizationItem key={org.id} organization={org} />
-              ))}
+              {filteredOrganizations.length > 0 ?
+                filteredOrganizations.slice(0, items).map((org) => (
+                  <OrganizationItem key={org.id} organization={org} />
+                ))
+                :
+                <EmptyState />
+              }
             </InfiniteScroll>
           </Grid.Column>
         </Grid>

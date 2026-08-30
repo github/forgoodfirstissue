@@ -10,6 +10,7 @@ import { LanguageFilter } from "./LanguageFilter";
 import { RepositoryItem } from "./RepositoryItem";
 import { SDGFilter } from "./SDGFilter";
 import { Grid, Stack } from "@primer/react-brand";
+import { EmptyState } from "./EmptyState";
 
 type RepositoryListProps = {
   repositories: Repository[];
@@ -84,9 +85,13 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
               hasMore={hasMoreItems}
               loader={<Loader />}
             >
-              {filteredRepositories.slice(0, items).map((repository) => (
-                <RepositoryItem key={repository.id} repository={repository} />
-              ))}
+              {filteredRepositories.length > 0 ?
+                filteredRepositories.slice(0, items).map((repository) => (
+                  <RepositoryItem key={repository.id} repository={repository} />
+                ))
+                :
+                <EmptyState />
+              }
             </InfiniteScroll>
           </Grid.Column>
         </Grid>
