@@ -57,6 +57,7 @@ export const RepositoryItem = ({ repository }: RepositoryItemProps) => {
               repositoryLang={repository.language.display}
               repositoryTopics={repository.topics}
               repositoryNumIssues={repository.issues.length}
+              repositoryStars={repository.stars_display}
             />
           </div>
         </div>
