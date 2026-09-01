@@ -11,6 +11,11 @@ import { RepositoryItem } from "./RepositoryItem";
 import { SDGFilter } from "./SDGFilter";
 import { Grid, Stack } from "@primer/react-brand";
 
+import Select from "react-select";
+import { REPOSITORY_SORT_OPTIONS } from "../constants";
+import { RepositorySortOrder } from "../types";
+import { useAppData } from "../hooks/useAppData";
+
 type RepositoryListProps = {
   repositories: Repository[];
   filter: string;
@@ -61,12 +66,33 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
   const loadMoreItems = () => setItems(items + itemsPerScroll);
   const hasMoreItems = items < filteredRepositories.length;
 
+  const { repositorySortOrder, updateRepositorySortOrder } = useAppData();
+
+  const sortOptions = REPOSITORY_SORT_OPTIONS.map((sortOrder) => ({
+    value: sortOrder,
+    label: sortOrder
+  }));
+
   return (
     <main className="repoWrap">
       <div className="grid-wrap">
         <Grid>
           <Grid.Column span={{ xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3 }}>
             <Stack className="stack">
+              <label className="label">Sort repositories</label>
+              <Select
+                instanceId="repository-sort"
+                options={sortOptions}
+                value={{
+                  value: repositorySortOrder,
+                  label: repositorySortOrder
+                }}
+                onChange={(option) => {
+                  if (option) {
+                    updateRepositorySortOrder(option.value as RepositorySortOrder);
+                  }
+                }}
+              />
               <LanguageFilter
                 setSelectedLanguages={setSelectedLanguages}
                 languageOptions={languageOptions}

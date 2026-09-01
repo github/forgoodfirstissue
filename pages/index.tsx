@@ -17,15 +17,18 @@ export default function Home() {
   const { repositories } = useAppData();
   const [filter, setFilter] = useState("");
 
-  const sortedRepositories = repositories.sort((a, b) => {
-    if (a.issues > b.issues) {
-      return -1;
-    } else if (a.issues < b.issues) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  // • Added sort by starts, so if this code stays here it will again sort it by isuue.
+  // • make sorted by most issues first by  default in the AppDataContext.tsx file, so no need to sort here.
+
+  // const sortedRepositories = repositories.sort((a, b) => {
+  //   if (a.issues > b.issues) {
+  //     return -1;
+  //   } else if (a.issues < b.issues) {
+  //     return 1;
+  //   } else {
+  //     return 0;
+  //   }
+  // });
 
   return (
     <>
@@ -49,7 +52,7 @@ export default function Home() {
           </Grid>
         </div>
 
-        <RepositoryList repositories={sortedRepositories} filter={filter} />
+        <RepositoryList repositories={repositories} filter={filter} />
       </div>
 
       <Footer />

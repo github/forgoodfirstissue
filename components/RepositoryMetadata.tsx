@@ -6,13 +6,15 @@ type RepositoryMetadataProps = {
   lastModified: Repository["last_modified"];
   repositoryLang: Repository["language"]["display"];
   repositoryTopics: Repository["topics"];
+  repositoryStars: Repository["stars_display"];
 };
 
 export const RepositoryMetadata = ({
   repositoryNumIssues,
   lastModified,
   repositoryLang,
-  repositoryTopics
+  repositoryTopics,
+  repositoryStars
 }: RepositoryMetadataProps) => {
   return (
     <div className="repo-item__meta">
@@ -26,6 +28,10 @@ export const RepositoryMetadata = ({
 
       <div>
         Language: <span>{repositoryLang}</span>
+      </div>
+
+      <div>
+        Stars: <span>{repositoryStars}</span>
       </div>
 
       {repositoryTopics && repositoryTopics.length > 0 && (
