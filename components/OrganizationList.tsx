@@ -41,6 +41,7 @@ export const OrganizationList = ({ organizations }: OrganizationListProps) => {
 
   const loadMoreItems = () => setItems(items + itemsPerScroll);
   const hasMoreItems = items < filteredOrganizations.length;
+  const isEmptyState = filteredOrganizations.length === 0;
 
   return (
     <main className="repoWrap">
@@ -66,16 +67,23 @@ export const OrganizationList = ({ organizations }: OrganizationListProps) => {
             className="org-list-wrap"
             span={{ xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9 }}
           >
-            <InfiniteScroll
-              dataLength={items}
-              next={loadMoreItems}
-              hasMore={hasMoreItems}
-              loader={<Loader />}
-            >
-              {filteredOrganizations.slice(0, items).map((org) => (
-                <OrganizationItem key={org.id} organization={org} />
-              ))}
-            </InfiniteScroll>
+            {isEmptyState ? (
+              <div className="p-6 rounded-md border border-slate-200 bg-white text-slate-700">
+                <p className="font-semibold">No results found.</p>
+                <p className="mt-2">Try changing your search term or filters.</p>
+              </div>
+            ) : (
+              <InfiniteScroll
+                dataLength={items}
+                next={loadMoreItems}
+                hasMore={hasMoreItems}
+                loader={<Loader />}
+              >
+                {filteredOrganizations.slice(0, items).map((org) => (
+                  <OrganizationItem key={org.id} organization={org} />
+                ))}
+              </InfiniteScroll>
+            )}
           </Grid.Column>
         </Grid>
       </div>
