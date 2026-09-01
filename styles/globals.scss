@@ -322,3 +322,16 @@ base, html {
     pointer-events: none;
   }
 }
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--light-text-secondary, #57606A);
+  font-size: 16px;
+  border: 1px dashed var(--light-border, #B7BFC7);
+  border-radius: 6px;
+  background: var(--light-bg-primary, #FFF);
+}
