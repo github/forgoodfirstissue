@@ -61,6 +61,34 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
   const loadMoreItems = () => setItems(items + itemsPerScroll);
   const hasMoreItems = items < filteredRepositories.length;
 
+  if (filteredRepositories.length === 0) {
+    return (
+      <main className="repoWrap">
+        <div className="grid-wrap">
+          <Grid>
+            <Grid.Column span={{ xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3 }}>
+              <Stack className="stack">
+                <LanguageFilter
+                  setSelectedLanguages={setSelectedLanguages}
+                  languageOptions={languageOptions}
+                />
+                <SDGFilter setSelectedTopics={setSelectedTopics} topicOptions={topicOptions} />
+              </Stack>
+            </Grid.Column>
+            <Grid.Column
+              className="repo-list-wrap"
+              span={{ xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9 }}
+            >
+              <div className="empty-state">
+                <p>No results found. Try changing your search term or filters.</p>
+              </div>
+            </Grid.Column>
+          </Grid>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="repoWrap">
       <div className="grid-wrap">

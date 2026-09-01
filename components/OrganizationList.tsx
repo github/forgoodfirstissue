@@ -42,6 +42,41 @@ export const OrganizationList = ({ organizations }: OrganizationListProps) => {
   const loadMoreItems = () => setItems(items + itemsPerScroll);
   const hasMoreItems = items < filteredOrganizations.length;
 
+  if (filteredOrganizations.length === 0) {
+    return (
+      <main className="repoWrap">
+        <div className="grid-wrap">
+          <Grid>
+            <Grid.Column span={{ xsmall: 12, small: 12, medium: 12, large: 5, xlarge: 3 }}>
+              <Stack className="stack">
+                <div className="search-wrap">
+                  <GeneralFilter
+                    filter={filter}
+                    setFilter={
+                      setFilter as (filter: string | number | readonly string[] | undefined) => void
+                    }
+                  />
+                </div>
+                <LanguageFilter
+                  setSelectedLanguages={setSelectedLanguages}
+                  languageOptions={languageOptions}
+                />
+              </Stack>
+            </Grid.Column>
+            <Grid.Column
+              className="org-list-wrap"
+              span={{ xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9 }}
+            >
+              <div className="empty-state">
+                <p>No results found. Try changing your search term or filters.</p>
+              </div>
+            </Grid.Column>
+          </Grid>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="repoWrap">
       <div className="grid-wrap">
