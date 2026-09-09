@@ -78,16 +78,22 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
             className="repo-list-wrap"
             span={{ xsmall: 12, small: 12, medium: 12, large: 7, xlarge: 9 }}
           >
-            <InfiniteScroll
-              dataLength={items}
-              next={loadMoreItems}
-              hasMore={hasMoreItems}
-              loader={<Loader />}
-            >
-              {filteredRepositories.slice(0, items).map((repository) => (
-                <RepositoryItem key={repository.id} repository={repository} />
-              ))}
-            </InfiniteScroll>
+            {filteredRepositories.length === 0 ? (
+              <div className="p-4 flex items-center justify-center">
+                <p>No results found. Try changing your search term or filters.</p>
+              </div>
+            ) : (
+              <InfiniteScroll
+                dataLength={items}
+                next={loadMoreItems}
+                hasMore={hasMoreItems}
+                loader={<Loader />}
+              >
+                {filteredRepositories.slice(0, items).map((repository) => (
+                  <RepositoryItem key={repository.id} repository={repository} />
+                ))}
+              </InfiniteScroll>
+            )}
           </Grid.Column>
         </Grid>
       </div>
