@@ -3,6 +3,8 @@ import { RepositoryIssueNumberIndicator } from "./RepositoryIssueNumberIndicator
 
 type RepositoryItemTopBarProps = {
   isIssueOpen: boolean;
+  issuesPanelId: string;
+  onToggleIssues: () => void;
   repositoryHasNewIssues: boolean;
   repositoryName: Repository["name"];
   repositoryNumIssues: number;
@@ -13,6 +15,8 @@ type RepositoryItemTopBarProps = {
 
 export const RepositoryItemTopBar = ({
   isIssueOpen,
+  issuesPanelId,
+  onToggleIssues,
   repositoryName,
   repositoryOwner,
   repositoryUrl
@@ -24,6 +28,7 @@ export const RepositoryItemTopBar = ({
         rel="noopener noreferrer"
         target="_blank"
         title={`Open ${repositoryOwner}/${repositoryName} on GitHub`}
+        onClick={(event) => event.stopPropagation()}
       >
         <h3>
           <div className="repo-item__owner">{repositoryOwner}</div>
@@ -32,7 +37,12 @@ export const RepositoryItemTopBar = ({
         </h3>
       </a>
 
-      <RepositoryIssueNumberIndicator isIssueOpen={isIssueOpen} />
+      <RepositoryIssueNumberIndicator
+        controlsId={issuesPanelId}
+        isIssueOpen={isIssueOpen}
+        label={`issues for ${repositoryOwner}/${repositoryName}`}
+        onToggle={onToggleIssues}
+      />
     </div>
   );
 };

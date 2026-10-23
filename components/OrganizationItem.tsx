@@ -11,6 +11,7 @@ type OrganizationItemProps = {
 export const OrganizationItem = ({ organization }: OrganizationItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const detailsPanelId = `org-details-${organization.id}`;
 
   const isContentVisible = isOpen || isClosing;
 
@@ -32,7 +33,9 @@ export const OrganizationItem = ({ organization }: OrganizationItemProps) => {
       <div id={`org-${organization.id}`}>
         <div onClick={handleToggle}>
           <OrganizationItemTopBar
+            detailsPanelId={detailsPanelId}
             isOpen={isOpen}
+            onToggleDetails={handleToggle}
             organizationName={organization.name}
             organizationUrl={organization.url}
           />
@@ -46,7 +49,7 @@ export const OrganizationItem = ({ organization }: OrganizationItemProps) => {
             />
           </div>
         </div>
-        <div className={`repo-item__issues-warper ${isOpen ? "open" : ""}`}>
+        <div id={detailsPanelId} className={`repo-item__issues-warper ${isOpen ? "open" : ""}`}>
           {isContentVisible && (
             <div className="repo-item__issue-list">
               <p>{organization.project_ask}</p>
