@@ -190,6 +190,26 @@ base, html {
   }
 }
 
+.repo-item__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+  margin: -4px;
+  color: inherit;
+  font-size: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid #096BDE;
+    outline-offset: 2px;
+  }
+}
+
 .repo-item__desc {
   color: var(--light-text-secondary, #57606A);
   font-size: 14px;
