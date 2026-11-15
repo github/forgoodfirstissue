@@ -2,7 +2,6 @@
 
 [fork]: https://github.com/github/forgoodfirstissue/fork
 [pr]: https://github.com/github/forgoodfirstissue/compare
-[style]: https://github.com/github/forgoodfirstissue/blob/main/.eslintrc.json
 [code-of-conduct]: https://github.com/github/.github/blob/main/CODE_OF_CONDUCT.md
 
 Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for keeping it great.
@@ -17,7 +16,7 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 1. Configure and install the dependencies: `npm install`
 1. Make sure linter passes on your machine: `npm run lint`
 1. Create a new branch: `git checkout -b my-branch-name`
-1. Make your change, add tests, and make sure the tests and linter still pass
+1. Make your change and make sure the linter still passes
 1. Push to your fork and [submit a pull request][pr]
 1. Pat yourself on the back and wait for your pull request to be reviewed and merged.
 
