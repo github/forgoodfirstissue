@@ -17,15 +17,7 @@ export default function Home() {
   const { repositories } = useAppData();
   const [filter, setFilter] = useState("");
 
-  const sortedRepositories = repositories.sort((a, b) => {
-    if (a.issues > b.issues) {
-      return -1;
-    } else if (a.issues < b.issues) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  const sortedRepositories = [...repositories].sort((a, b) => b.issues.length - a.issues.length);
 
   return (
     <>

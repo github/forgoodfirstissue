@@ -40,10 +40,7 @@ export const RepositoryList = ({ repositories, filter }: RepositoryListProps) =>
       (value) => value && value.toString().toLowerCase().includes(filter.toLowerCase())
     );
 
-    const happyContainer = Object.values(repository).some(
-      (value) => value && value.toString().toLowerCase().includes(filter.toLowerCase())
-    );
-    return languageFilter && nameFilter && topicFilter && happyContainer;
+    return languageFilter && nameFilter && topicFilter;
   });
 
   const uniqueLanguages = [
